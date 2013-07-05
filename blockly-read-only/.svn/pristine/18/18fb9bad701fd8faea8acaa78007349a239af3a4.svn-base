@@ -1,0 +1,59 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Blockly : Puzzle</title>
+  <style>
+    body {
+      background-color: white;
+      font-family: sans-serif;
+    }
+    h1 {
+      font-weight: normal;
+      font-size: 140%;
+    }
+    li {
+      padding-bottom: 1ex;
+    }
+  </style>
+</head>
+<body>
+  <h1><a href="../index.html">Blockly</a> : Puzzle</h1>
+
+  <p>
+    <img src="title.png" height=168 width=285 style="padding: 1em; background-color: #f0f0f0;">
+  </p>
+
+  <p>Choose a language to get started:</p>
+
+  <ul>
+    <li><a href="puzzle.html?lang=af">Afrikaans</a></li>
+    <li><a href="puzzle.html?lang=zh-hans">简体字</a> (Chinese)</li>
+    <li><a href="puzzle.html?lang=cs">Česky</a> (Czech)</li>
+    <li><a href="puzzle.html?lang=nl">Nederlands, Vlaams</a> (Dutch/Flemish)</li>
+    <li><a href="puzzle.html?lang=en">English</a></li>
+    <li><a href="puzzle.html?lang=gl">Galego</a> (Galician)</li>
+    <li><a href="puzzle.html?lang=de">Deutsch</a> (German)</li>
+    <li><a href="puzzle.html?lang=el">Ελληνικά</a> (Greek)</li>
+    <li><a href="puzzle.html?lang=hak">客家話</a> (Hakka)</li>
+    <li><a href="puzzle.html?lang=he">עברית</a> (Hebrew)</li>
+    <li><a href="puzzle.html?lang=hu">Magyar</a> (Hungarian)</li>
+    <li><a href="puzzle.html?lang=ia">Interlingua</a></li>
+    <li><a href="puzzle.html?lang=it">Italiano</a> (Italian)</li>
+    <li><a href="puzzle.html?lang=ja">日本語</a> (Japanese)</li>
+    <li><a href="puzzle.html?lang=ko">한국어</a> (Korean)</li>
+    <li><a href="puzzle.html?lang=la">Latine</a> (Latin)</li>
+    <li><a href="puzzle.html?lang=lv">Latviešu</a> (Latvian)</li>
+    <li><a href="puzzle.html?lang=lb">Lëtzebuergesch</a> (Luxembourgish)</li>
+    <li><a href="puzzle.html?lang=mk">македонски јазик</a> (Macedonian)</li>
+    <li><a href="puzzle.html?lang=ms">Bahasa Melayu</a> (Malay)</li>
+    <li><a href="puzzle.html?lang=pl">Polski</a> (Polish)</li>
+    <li><a href="puzzle.html?lang=pt-br">Português</a> (Portuguese)</li>
+    <li><a href="puzzle.html?lang=ksh">Ripoarėsch</a> (Ripuarian)</li>
+    <li><a href="puzzle.html?lang=ru">русский язык</a> (Russian)</li>
+    <li><a href="puzzle.html?lang=sw">Kishwahili</a> (Swahili)</li>
+    <li><a href="puzzle.html?lang=sv">Svenska</a> (Swedish)</li>
+    <li><a href="puzzle.html?lang=tr">Türkçe</a> (Turkish)</li>
+    <li><a href="puzzle.html?lang=vi">Tiếng Việt</a> (Vietnamese)</li>
+  </ul>
+</body>
+</html>
