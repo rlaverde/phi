@@ -144,7 +144,8 @@ class Gen_compressed(threading.Thread):
     self.gen_language('en')
     self.gen_language('vi')
     self.gen_language('zh_tw')
-
+    self.gen_language('es')
+    
   def gen_core(self):
     target_filename = 'blockly_compressed.js'
     # Define the parameters for the POST request.
