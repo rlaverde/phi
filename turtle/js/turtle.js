@@ -31,8 +31,6 @@ var Turtle = {};
 /*document.write(turtlepage.start({}, null,
     {MSG: MSG}));*/
 
-/*turtlepage.start({}, null, {MSG: MSG});*/
-
 Turtle.HEIGHT = 400;
 Turtle.WIDTH = 400;
 
