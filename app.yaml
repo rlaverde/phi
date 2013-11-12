@@ -17,8 +17,8 @@ handlers:
   script: report.py
 
 # Closure library for uncompiled Blockly.
-- url: /closure-library-read-only
-  static_dir: closure-library-read-only
+#- url: /closure-library-read-only
+#  static_dir: closure-library-read-only
 
 # Redirect for root directory.
 - url: /

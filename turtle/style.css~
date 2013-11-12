@@ -115,7 +115,7 @@ body {
     font-size: 12px;
     line-height: 21px;
     letter-spacing: 0.2px;
-    color: #000;
+    color: #b9b9b9;
 }
 .scanlines {
     position: fixed;
@@ -124,7 +124,7 @@ body {
     width: 100%;
     height: 100%;
     z-index: -1;
-    background: url(/images/tile.png);
+    background: url(images/tile.png);
 }
 input,
 textarea {
@@ -166,7 +166,7 @@ a.button,
 .forms fieldset .btn-submit,
 #commentform input#submit {
     font-family: 'Open Sans Condensed', sans-serif;
-    background: #f2f2f2 url(/images/button.png) repeat-x;
+    background: #f2f2f2 url(images/button.png) repeat-x;
     height: 31px;
     line-height: 31px;
     color: #383838;
@@ -184,9 +184,6 @@ a.button,
     width: auto;
     border: none;
     font-weight: bold;
-}
-a.disabled {
-  display: none;
 }
 a.button.blue {
     background-color: #5f9cb8;
@@ -280,13 +277,13 @@ ol li {
 }
 hr {
     border: none;
-    background: transparent url(/images/line.png) repeat-x;
+    background: transparent url(images/line.png) repeat-x;
     height: 3px;
     margin-top: 10px;
     margin-bottom: 30px;
 }
 .wrapper {
-    width: 1020px;
+    width: 1010px;
     margin: 0 auto;
 }
 .header-wrapper {
@@ -299,12 +296,15 @@ hr {
     z-index: 101;
 }
 .header {
-    width: 1020px;
+    width: 1010px;
     margin: 0 auto;
 }
 .logo {
     float: left;
     padding-top: 22px;
+}
+.home {
+    margin-bottom: 20px;
 }
 #navigation {
     background: rgba(0, 0, 0, 0.44);
@@ -339,7 +339,7 @@ hr {
     visibility: hidden
 }
 .loading {
-    background: transparent url(/images/loading.gif) no-repeat 50% 20px;
+    background: transparent url(images/loading.gif) no-repeat 50% 20px;
     opacity: 0.44;
 }
 .outer {
@@ -607,7 +607,7 @@ hr {
     padding: 13px 0;
     line-height: 1;
     font-size: 13px;
-    background-image: url(/images/line.png);
+    background-image: url(images/line.png);
     background-repeat: repeat-x;
     background-position: left top;
 }
@@ -636,7 +636,7 @@ hr {
     background: rgba(0, 0, 0, 0.44);
     -webkit-box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.44);
     box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.44);
-    padding: 15px;
+    padding: 20px;
     padding-bottom: 0;
     position: relative;
     overflow: hidden;
@@ -658,6 +658,7 @@ hr {
     pointer-events: none;
 }
 img {
+    display: block;
     max-width: 100%;
 }
 .frame img {
@@ -701,7 +702,7 @@ iframe {
     text-decoration: none;
     width: 100%;
     z-index: 100;
-    background: rgba(0, 0, 0, 0.55) url(/images/icon-more.png) no-repeat center center;
+    background: rgba(0, 0, 0, 0.55) url(images/icon-more.png) no-repeat center center;
 }
 .post .details {
     background: rgba(0, 0, 0, 0.12);
@@ -722,7 +723,7 @@ iframe {
     color: #86aca3
 }
 .post .details .likes a {
-    background: transparent url(/images/icon-like.png) no-repeat left 13px;
+    background: transparent url(images/icon-like.png) no-repeat left 13px;
     float: right;
     position: relative;
     height: 8px;
@@ -736,7 +737,7 @@ iframe {
     color: #797979
 }
 .post .details .comments {
-    background: transparent url(/images/icon-comment.png) no-repeat left 7px;
+    background: transparent url(images/icon-comment.png) no-repeat left 7px;
     float: right;
     position: relative;
     padding: 0 0 6px 14px;
@@ -754,35 +755,35 @@ iframe {
     float: left;
 }
 .icon-audio {
-    background: transparent url(/images/icon-audio.png) no-repeat left 5px;
+    background: transparent url(images/icon-audio.png) no-repeat left 5px;
     padding: 0 0 5px 15px;
 }
 .icon-chat {
-    background: transparent url(/images/icon-chat.png) no-repeat left 6px;
+    background: transparent url(images/icon-chat.png) no-repeat left 6px;
     padding: 0 0 6px 17px;
 }
 .icon-image {
-    background: transparent url(/images/icon-image.png) no-repeat left 6px;
+    background: transparent url(images/icon-image.png) no-repeat left 6px;
     padding: 0 0 6px 20px;
 }
 .icon-link {
-    background: transparent url(/images/icon-link.png) no-repeat left 5px;
+    background: transparent url(images/icon-link.png) no-repeat left 5px;
     padding: 0 0 5px 18px;
 }
 .icon-quote {
-    background: transparent url(/images/icon-quote.png) no-repeat left 7px;
+    background: transparent url(images/icon-quote.png) no-repeat left 7px;
     padding: 0 0 7px 17px;
 }
 .icon-standard {
-    background: transparent url(/images/icon-standard.png) no-repeat left 5px;
+    background: transparent url(images/icon-standard.png) no-repeat left 5px;
     padding: 0 0 5px 18px;
 }
 .icon-video {
-    background: transparent url(/images/icon-video.png) no-repeat left 6px;
+    background: transparent url(images/icon-video.png) no-repeat left 6px;
     padding: 0 0 6px 18px;
 }
 .post-nav {
-    background: transparent url(/images/line.png) center top repeat-x;
+    background: transparent url(images/line.png) center top repeat-x;
     margin: 0 -5px;
     overflow: hidden;
     position: relative;
@@ -824,7 +825,7 @@ iframe {
     padding-bottom: 0;
     margin-top: 10px;
     padding-top: 30px;
-    background: transparent url(/images/line.png) top left repeat-x;
+    background: transparent url(images/line.png) top left repeat-x;
 }
 .sidebox.widget_text,
 .sidebox.widget_text:first-child {
@@ -967,7 +968,7 @@ ul.single-gallery li .frame {
 .format-chat ul li {
     margin-top: 8px;
     padding-top: 8px;
-    background: transparent url(/images/line.png) repeat-x left top;
+    background: transparent url(images/line.png) repeat-x left top;
 }
 .format-chat ul li:first-child {
     margin-top: 15px;
@@ -984,7 +985,7 @@ blockquote {
     font-size: 16px;
     line-height: 25px;
     font-weight: 300;
-    background-image: url(/images/quote.png);
+    background-image: url(images/quote.png);
     background-repeat: no-repeat;
     background-position: right top;
     font-style: italic;
@@ -993,7 +994,7 @@ blockquote {
     background: none
 }
 .blog-grid .post.format-quote {
-    background-image: url(/images/quote-bg.png);
+    background-image: url(images/quote-bg.png);
     background-repeat: no-repeat;
     background-position: right top;
 }
@@ -1072,7 +1073,7 @@ blockquote cite:before {
 .icon-song,
 .icon-album,
 .icon-artist {
-    background: transparent url(/images/icon-song.png) no-repeat right 4px;
+    background: transparent url(images/icon-song.png) no-repeat right 4px;
     width: 12px;
     height: 16px;
     margin-right: 7px;
@@ -1080,10 +1081,10 @@ blockquote cite:before {
     display: block;
 }
 .icon-album {
-    background: transparent url(/images/icon-album.png) no-repeat right 5px
+    background: transparent url(images/icon-album.png) no-repeat right 5px
 }
 .icon-artist {
-    background: transparent url(/images/icon-artist.png) no-repeat right 4px
+    background: transparent url(images/icon-artist.png) no-repeat right 4px
 }
 /* =Related
 ----------------------------------------------- */
@@ -1115,7 +1116,7 @@ blockquote cite:before {
 ----------------------------------------------- */
 #comments ol.commentlist {
     list-style: none;
-    background: transparent url(/images/line.png) repeat-x left bottom;
+    background: transparent url(images/line.png) repeat-x left bottom;
     margin-bottom: 30px;
     padding-bottom: 30px;
     margin-top: -15px;
@@ -1295,7 +1296,7 @@ li.post.pingback p {
     margin: 0 2px;
 }
 .social a {
-    background: transparent url(/images/social-icons.png) no-repeat 0 0;
+    background: transparent url(images/social-icons.png) no-repeat 0 0;
     height: 32px;
     width: 32px;
     display: inline-block;
@@ -1405,7 +1406,7 @@ li.post.pingback p {
     box-shadow: 0 -1px 0 rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.09);
 }
 #footer {
-    width: 1020px;
+    width: 1010px;
     margin: 0 auto;
     padding: 25px 0;
     overflow: hidden;
@@ -1428,150 +1429,92 @@ li.post.pingback p {
 #footer.three .widget-area + .widget-area + .widget-area {
     margin-right: 0
 }
+/* Four Footer Widget Areas */
+#footer.four .widget-area {
+    float: left;
+    margin-right: 3.7%;
+    width: 22.2%;
+}
+#footer.four .widget-area + .widget-area + .widget-area + .widget-area {
+    margin-right: 0
+}
+#footer h3 {
+    font-size: 15px;
+    margin-bottom: 15px;
+}
+#footer a,
+.site-generator a {
+    color: #b9b9b9
+}
+#footer a:hover,
+.site-generator a:hover,
+#footer .post-list a:hover {
+    color: #86aca3
+}
+#footer ul li {
+    list-style: none
+}
+ul.flickr-feed {
+	width: 110%;
+	margin-right: -11px;
+}
 
+ul.flickr-feed li {
+	width: 67px;
+	margin-right: 11px;
+	margin-bottom: 11px;
+	float: left;
+}
+
+ul.flickr-feed li img {
+	width: 67px;
+	height: 67px;
+}
 .site-generator-wrapper {
     background: rgba(0, 0, 0, 0.55);
     overflow: hidden;
 }
 .site-generator {
-    width: 1020px;
+    width: 1010px;
     margin: 0 auto;
-    padding: 20px 0px 0px 0px;
-   	text-align: center;
+    padding: 20px 0;
+    text-align: center;
 }
 .site-generator p {
     padding: 0
 }
 /*-----------------------------------------------------------------------------------*/
-
-/* Buttons. */
-button {
-  margin: 5px;
-  margin-right: 12px;
-  margin-left: 0;
-  padding: 10px;
-  font-size: large;
-  border-radius: 5px;
-  border: 1px solid #ddd;
-  background-color: #eee;
-  color: black;
+/*	TWITTER
+/*-----------------------------------------------------------------------------------*/
+.widget_twitter .entry-meta {
+    display: block;
+    font-size: 11px;
 }
-button.launch {
-  border: 1px solid #d43;
-  background-color: #d43;
-  color: white;
+.widget_twitter .entry-meta a {
+    color: #797979 !important
 }
-button:active {
-  border: 1px solid blue !important;
+.widget_twitter .entry-meta a:hover {
+    color: #86aca3 !important
 }
-button:hover {
-  box-shadow: 2px 2px 5px #888;
+.widget_twitter ul {
+    padding: 0;
+    list-style: none;
+    margin-bottom: 15px;
 }
-button>img {
-  opacity: 0.6;
+.widget_twitter ul li {
+    background: transparent url(images/line.png) repeat-x center top;
+    padding: 0;
+    padding-top: 15px !important;
+    margin-top: 14px;
 }
-button:hover>img {
-  opacity: 1;
+.widget_twitter ul li:first-child {
+    background: none;
+    margin: 0;
+    padding: 0 !important;
 }
-button.disabled:hover>img {
-  opacity: 0.6;
-}
-button.disabled {
-  display: none;
-}
-
-#home {
-    margin-bottom: 20px;
-}
-#challenge {
-    margin-bottom: 20px;
-}
-
-#viewer{
-	width: 500px;
-	margin: 0 auto;
-}
-#controls{
-	width: 500px;
-	margin: 0 auto;
-}
-
-#controls .control{
-	display: inline;
-	height: 50px;
-	
-}
-
-#blockly {
-  width: 640px;
-  height: 480px; 
-}
-#scratch{
-	display: none;
-	background-color: #fff;
-}
-#display {
-	
-  	border: 2px solid #ccc;
-  	background-color: #fff;
-}
-#downloadImageLink {
-  	display: none;
-}
-
-/* Slider. */
-.sliderTrack {
-  stroke: #aaa;
-  stroke-width: 6px;
-  stroke-linecap: round;
-}
-.sliderKnob {
-  fill: #ddd;
-  stroke: #bbc;
-  stroke-width: 1px;
-  stroke-linejoin: round;
-}
-.sliderKnob:hover {
-  fill: #eee;
-}
-
-/* Sprited icons. */
-.code {
-  height: 21px;
-  width: 21px;
-  background-image: url(/images/icons.png);
-  background-position: -42px 0px;
-}
-.img {
-  height: 21px;
-  width: 21px;
-  background-image: url(/images/icons.png);
-  background-position: -84px 0px;
-}
-.link {
-  height: 21px;
-  width: 21px;
-  background-image: url(/images/icons.png);
-  background-position: -21px 0px;
-}
-
-/*CMD Buttons*/
-
-#runButton{
-	opacity: 1;
-}
-#resetButton{
-	display: none;
-	opacity: 1;
-}
-#viewCode{
-	opacity: 1;
-}
-
-#spinner{
-	visibility: hidden;	
-}
-
-xml{
-	display: none;
+.follow-button {
+    display: block;
+    background: transparent url(images/line.png) repeat-x left top;
+    margin: 0;
+    padding: 15px 0 0 0;
 }

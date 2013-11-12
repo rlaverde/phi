@@ -31,8 +31,8 @@ var Turtle = {};
 /*document.write(turtlepage.start({}, null,
     {MSG: MSG}));*/
 
-Turtle.HEIGHT = 400;
-Turtle.WIDTH = 400;
+Turtle.HEIGHT = 500;
+Turtle.WIDTH = 500;
 
 /**
  * PID of animation task currently executing.
@@ -89,7 +89,12 @@ Turtle.init = function() {
   // (http://caniuse.com/#feat=download).
   if (!(goog.userAgent.GECKO ||
        (goog.userAgent.WEBKIT && !goog.userAgent.SAFARI))) {
-    document.getElementById('captureButton').className = 'disabled';
+       	
+    var captureBtn = document.getElementById('captureButton');
+    if(captureBtn){
+    	captureBtn.className = 'disabled';	
+    }
+    
   }
 
   // Initialize the slider.
@@ -202,7 +207,7 @@ Turtle.display = function() {
  */
 Turtle.runButtonClick = function() {
   document.getElementById('runButton').style.display = 'none';
-  document.getElementById('resetButton').style.display = 'inline';
+  document.getElementById('resetButton').style.display = 'inline-block';
   document.getElementById('spinner').style.visibility = 'visible';
   Blockly.mainWorkspace.traceOn(true);
   Turtle.execute();
@@ -212,7 +217,7 @@ Turtle.runButtonClick = function() {
  * Click the reset button.  Reset the Turtle.
  */
 Turtle.resetButtonClick = function() {
-  document.getElementById('runButton').style.display = 'inline';
+  document.getElementById('runButton').style.display = 'inline-block';
   document.getElementById('resetButton').style.display = 'none';
   document.getElementById('spinner').style.visibility = 'hidden';
   Blockly.mainWorkspace.traceOn(false);
