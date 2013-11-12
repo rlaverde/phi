@@ -63,9 +63,9 @@ handlers:
   upload: turtle/(.*\.xml)
 
 # image files
-- url: /(.*\.(bmp|gif|ico|jpeg|jpg|png))
+- url: /(.*\.(bmp|gif|ico|jpeg|jpg|png|cur))
   static_files: turtle/\1
-  upload: turtle/(.*\.(bmp|gif|ico|jpeg|jpg|png))
+  upload: turtle/(.*\.(bmp|gif|ico|jpeg|jpg|png|cur))
 
 # index files
 - url: /(.+)/
