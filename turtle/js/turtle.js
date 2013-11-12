@@ -31,8 +31,8 @@ var Turtle = {};
 /*document.write(turtlepage.start({}, null,
     {MSG: MSG}));*/
 
-Turtle.HEIGHT = 500;
-Turtle.WIDTH = 500;
+Turtle.HEIGHT = 400;
+Turtle.WIDTH = 400;
 
 /**
  * PID of animation task currently executing.
@@ -73,6 +73,9 @@ Turtle.init = function() {
   });
   
   var blocklyDiv = document.getElementById('blockly');
+  var canvasDiv = document.getElementById('display');
+  var viewerDiv = document.getElementsByClassName('one-third');
+  var editDiv = document.getElementsByClassName('two-third');
   /*var onresize = function(e) {
     blocklyDiv.style.width = (window.innerWidth - blocklyDiv.offsetLeft - 18) +
         'px';
@@ -80,7 +83,8 @@ Turtle.init = function() {
         'px';
   };*/
   var onresize = function(e) {
-    blocklyDiv.style.width = blocklyDiv.parentElement.offsetWidth + 'px';
+    blocklyDiv.style.width = editDiv[0].offsetWidth + 'px';
+    blocklyDiv.style.height = (viewerDiv[0].offsetHeight - 20) + 'px';
   };
   window.addEventListener('resize', onresize);
   onresize();

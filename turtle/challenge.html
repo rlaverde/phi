@@ -87,18 +87,20 @@
 <!-- End Header -->
 
 <!-- Begin Wrapper -->
-<div class="wrapper"><!-- Begin Intro -->
+<div class="full-wrapper"><!-- Begin Intro -->
 	
-	<div class="box">		
-		<div id="challenge">
-			<h1 class="title">Visualizador</h1>
+	<div class="box">
+		<h3 class="title">Visualizador y editor</h3>
+		
+		
+		<div class="one-third">
 			<div id="viewer">
-				<canvas id="scratch" width="500" height="500"></canvas>
-				<canvas id="display" width="500" height="500"></canvas>
+				<canvas id="scratch" width="400" height="400"></canvas>
+				<canvas id="display" width="400" height="400"></canvas>
 			</div>
 			<div id="controls">
 				<div class="control">
-					<a id="runButton" href="" class="button blue" >Ejecutar Programa</a>
+					<a id="runButton" href="" class="button blue" >Ejecutar</a>
 					<a id="resetButton" href="" class="button blue" >Reiniciar</a>
 				</div>
 				<div class="control">
@@ -131,15 +133,14 @@
 					</a>
 				</div>
 			</div>
-			
-			<h1 class="title">Editor</h1>
-			
+		</div>
+		<div class="two-third last">
 			<div id="blockly">
-							
-			</div>
-			<div class="clear"></div>
-		</div> 
-		<div class="clear"></div>
+						
+			</div>				
+		</div>
+		
+		<div class="clear"></div> 
 	</div>	
 	
 	<ul class="social">
@@ -247,7 +248,7 @@
 </div>
 <!-- End Footer -->
 
-<xml id="toolbox" style="display: none">
+<xml id="toolbox">
 		<category name="Tortuga">
 			<block type="draw_move">
 				<value name="VALUE">

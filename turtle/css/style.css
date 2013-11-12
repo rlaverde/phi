@@ -290,6 +290,9 @@ hr {
     width: 1020px;
     margin: 0 auto;
 }
+.full-wrapper {
+    margin: 0 auto;
+}
 .header-wrapper {
     background: rgba(0, 0, 0, 0.33);
     margin-bottom: 20px;
@@ -637,7 +640,7 @@ hr {
     background: rgba(0, 0, 0, 0.44);
     -webkit-box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.44);
     box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.44);
-    padding: 15px;
+    padding: 20px;
     padding-bottom: 0;
     position: relative;
     /*overflow: hidden;*/
@@ -1489,11 +1492,9 @@ button.disabled {
 }
 
 #viewer{
-	width: 500px;
 	margin: 0 auto;
 }
 #controls{
-	width: 500px;
 	margin: 0 auto;
 }
 
@@ -1504,8 +1505,8 @@ button.disabled {
 }
 
 #blockly {
-  width: 800px;
-  height: 600px; 
+  width: 400px;
+  height: 300px;
 }
 #scratch{
 	display: none;

@@ -67,6 +67,16 @@ handlers:
   static_files: turtle/\1
   upload: turtle/(.*\.(bmp|gif|ico|jpeg|jpg|png|cur))
 
+# cur files
+- url: /(.*\.(cur))
+  static_files: turtle/\1
+  upload: turtle/(.*\.(cur))
+
+# map files
+- url: /(.*\.(map))
+  static_files: turtle/\1
+  upload: turtle/(.*\.(map))
+
 # index files
 - url: /(.+)/
   static_files: turtle/\1/index.html
