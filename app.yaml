@@ -21,8 +21,8 @@ handlers:
 #  static_dir: closure-library-read-only
 
 # Redirect for root directory.
-- url: /
-  static_dir: turtle
+#- url: /
+#  static_dir: turtle
 #  script: index_redirect.py
 
 # Favicon.
@@ -34,3 +34,50 @@ handlers:
 - url: /remote_api
   script: $PYTHON_LIB/google/appengine/ext/remote_api/handler.py
   login: admin
+
+ # Files
+ 
+- url: /(.*\.css)
+  mime_type: text/css
+  static_files: turtle/\1
+  upload: turtle/(.*\.css)
+
+- url: /(.*\.html)
+  mime_type: text/html
+  static_files: turtle/\1
+  upload: turtle/(.*\.html)
+
+- url: /(.*\.js)
+  mime_type: text/javascript
+  static_files: turtle/\1
+  upload: turtle/(.*\.js)
+
+- url: /(.*\.txt)
+  mime_type: text/plain
+  static_files: turtle/\1
+  upload: turtle/(.*\.txt)
+
+- url: /(.*\.xml)
+  mime_type: application/xml
+  static_files: turtle/\1
+  upload: turtle/(.*\.xml)
+
+# image files
+- url: /(.*\.(bmp|gif|ico|jpeg|jpg|png))
+  static_files: turtle/\1
+  upload: turtle/(.*\.(bmp|gif|ico|jpeg|jpg|png))
+
+# index files
+- url: /(.+)/
+  static_files: turtle/\1/index.html
+  upload: turtle/(.+)/index.html
+
+# redirect to 'url + /index.html' url.
+- url: /(.+)
+  static_files: turtle/redirector.html
+  upload: turtle/redirector.html
+
+# site root
+- url: /
+  static_files: turtle/index.html
+  upload: turtle/index.html
