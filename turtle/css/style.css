@@ -104,6 +104,7 @@ input[type="submit"]:focus, input[type="button"]:focus {
 .wp-caption, 
 .bypostauthor,
 .wp-caption-text {}
+
 /*-----------------------------------------------------------------------------------*/
 /*	GENERAL
 /*-----------------------------------------------------------------------------------*/
@@ -1503,8 +1504,8 @@ button.disabled {
 }
 
 #blockly {
-  width: 640px;
-  height: 480px; 
+  width: 800px;
+  height: 600px; 
 }
 #scratch{
 	display: none;

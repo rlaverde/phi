@@ -89,17 +89,57 @@
 <!-- Begin Wrapper -->
 <div class="wrapper"><!-- Begin Intro -->
 	
-	<div class="box">
-		<div id="home">
-	
-			<h1 class="title">Inicio</h1>
-		
+	<div class="box">		
+		<div id="challenge">
+			<h1 class="title">Visualizador</h1>
+			<div id="viewer">
+				<canvas id="scratch" width="500" height="500"></canvas>
+				<canvas id="display" width="500" height="500"></canvas>
+			</div>
+			<div id="controls">
+				<div class="control">
+					<a id="runButton" href="" class="button blue" >Ejecutar Programa</a>
+					<a id="resetButton" href="" class="button blue" >Reiniciar</a>
+				</div>
+				<div class="control">
+					<img id="spinner" src="images/loading.gif" height=24 width=24>
+				</div>
+				<div class="control">
+					<svg id="slider" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="150" height="50">
+						<!-- Slow icon. -->
+						<clipPath id="slowClipPath">
+							<rect width=26 height=12 x=5 y=14 />
+						</clipPath>
+						<image xlink:href="images/icons.png" height=42 width=106 x=-21 y=-10 clip-path="url(#slowClipPath)" /><!-- Fast icon. -->
+						<clipPath id="fastClipPath"><rect width=26 height=16 x=120 y=10 /></clipPath>
+						<image xlink:href="images/icons.png" height=42 width=106 x=120 y=-11 clip-path="url(#fastClipPath)" />
+					</svg>	
+				</div>
+				<div class="control">
+					<a id="viewCode" href="" class="button blue" title="Ver el código JavaScript generado.">
+						<img src='js/media/1x1.gif' class="code">
+					</a>
+				</div>
+				<div class="control">
+					<a id="linkButton" href="" class="button blue" title="Guardar y enlazar los bloques.">
+						<img src='js/media/1x1.gif' class="link">
+					</a>
+				</div>
+				<div class="control">
+					<a id="captureButton" href="" class="button blue" title="Guardar el dibujo.">
+						<img src='js/media/1x1.gif' class="img">
+					</a>
+				</div>
+			</div>
 			
-		
-		
-		</div>
+			<h1 class="title">Editor</h1>
+			
+			<div id="blockly">
+							
+			</div>
+			<div class="clear"></div>
+		</div> 
 		<div class="clear"></div>
-		<hr/>
 	</div>	
 	
 	<ul class="social">

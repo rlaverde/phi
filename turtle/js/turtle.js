@@ -71,12 +71,16 @@ Turtle.init = function() {
     }
     return null;
   });
+  
   var blocklyDiv = document.getElementById('blockly');
-  var onresize = function(e) {
+  /*var onresize = function(e) {
     blocklyDiv.style.width = (window.innerWidth - blocklyDiv.offsetLeft - 18) +
         'px';
     blocklyDiv.style.height = (window.innerHeight - blocklyDiv.offsetTop - 18) +
         'px';
+  };*/
+  var onresize = function(e) {
+    blocklyDiv.style.width = blocklyDiv.parentElement.offsetWidth + 'px';
   };
   window.addEventListener('resize', onresize);
   onresize();
