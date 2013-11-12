@@ -208,7 +208,7 @@ Turtle.display = function() {
 Turtle.runButtonClick = function() {
   document.getElementById('runButton').style.display = 'none';
   document.getElementById('resetButton').style.display = 'inline-block';
-  document.getElementById('spinner').style.visibility = 'visible';
+  document.getElementById('spinner').style.display = 'inline-block';
   Blockly.mainWorkspace.traceOn(true);
   Turtle.execute();
 };
@@ -219,7 +219,7 @@ Turtle.runButtonClick = function() {
 Turtle.resetButtonClick = function() {
   document.getElementById('runButton').style.display = 'inline-block';
   document.getElementById('resetButton').style.display = 'none';
-  document.getElementById('spinner').style.visibility = 'hidden';
+  document.getElementById('spinner').style.display = 'none';
   Blockly.mainWorkspace.traceOn(false);
   Turtle.reset();
 };
@@ -258,7 +258,7 @@ Turtle.animate = function() {
 
   var tuple = BlocklyApps.log.shift();
   if (!tuple) {
-    document.getElementById('spinner').style.visibility = 'hidden';
+    document.getElementById('spinner').style.display = 'none';
     Blockly.mainWorkspace.highlightBlock(null);
     return;
   }
