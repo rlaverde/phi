@@ -72,10 +72,8 @@ Turtle.init = function() {
     return null;
   });
   
-  var blocklyDiv = document.getElementById('blockly');
-  var canvasDiv = document.getElementById('display');
-  var viewerDiv = document.getElementsByClassName('one-third');
-  var editDiv = document.getElementsByClassName('two-third');
+  
+  
   /*var onresize = function(e) {
     blocklyDiv.style.width = (window.innerWidth - blocklyDiv.offsetLeft - 18) +
         'px';
@@ -83,8 +81,27 @@ Turtle.init = function() {
         'px';
   };*/
   var onresize = function(e) {
-    blocklyDiv.style.width = editDiv[0].offsetWidth + 'px';
-    blocklyDiv.style.height = (viewerDiv[0].offsetHeight - 20) + 'px';
+  	var blocklyEl = document.getElementById('blockly');
+  	var canvasEl = document.getElementById('display');
+  	var viewerDiv = document.getElementsByClassName('one-third');
+  	var editDiv = document.getElementsByClassName('two-third');
+  	var ctx = canvasEl.getContext('2d');
+  	var canTam = viewerDiv[0].offsetWidth;
+  	
+  	console.log(viewerDiv[0].offsetHeight);
+  	
+  	ctx.canvas.height = canTam;
+    ctx.canvas.width = canTam;
+    
+    Turtle.WIDTH = canTam;
+    Turtle.HEIGHT = canTam;
+    
+    if(Turtle.ctxDisplay){
+    	Turtle.reset();
+    }
+    
+    blocklyEl.style.width = editDiv[0].offsetWidth + 'px';
+    blocklyEl.style.height = (viewerDiv[0].offsetHeight - 20) + 'px';
   };
   window.addEventListener('resize', onresize);
   onresize();
