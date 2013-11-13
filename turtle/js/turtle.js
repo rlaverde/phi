@@ -34,6 +34,8 @@ var Turtle = {};
 Turtle.HEIGHT = 400;
 Turtle.WIDTH = 400;
 
+Turtle.stepExecution = false;
+
 /**
  * PID of animation task currently executing.
  */
@@ -72,36 +74,40 @@ Turtle.init = function() {
     return null;
   });
   
+  window.width_old = 0;
+  window.height_old = 0;
   
-  
-  /*var onresize = function(e) {
-    blocklyDiv.style.width = (window.innerWidth - blocklyDiv.offsetLeft - 18) +
-        'px';
-    blocklyDiv.style.height = (window.innerHeight - blocklyDiv.offsetTop - 18) +
-        'px';
-  };*/
   var onresize = function(e) {
-  	var blocklyEl = document.getElementById('blockly');
-  	var canvasEl = document.getElementById('display');
-  	var viewerDiv = document.getElementsByClassName('one-third');
-  	var editDiv = document.getElementsByClassName('two-third');
-  	var ctx = canvasEl.getContext('2d');
-  	var canTam = viewerDiv[0].offsetWidth;
-  	
-  	console.log(viewerDiv[0].offsetHeight);
-  	
-  	ctx.canvas.height = canTam;
-    ctx.canvas.width = canTam;
-    
-    Turtle.WIDTH = canTam;
-    Turtle.HEIGHT = canTam;
-    
-    if(Turtle.ctxDisplay){
-    	Turtle.reset();
+  	if((window.width_old != window.innerWidth) || (window.height_old != window.innerHeight)){
+	  	console.log('Resize');
+	  	
+	  	var blocklyEl = document.getElementById('blockly');
+	  	var canvasDisplayEl = document.getElementById('display');
+	  	var canvasScratchEl = document.getElementById('scratch');
+	  	var viewerDiv = document.getElementsByClassName('one-third');
+	  	var editDiv = document.getElementsByClassName('two-third');
+	  	var ctxDisplayEl = canvasDisplayEl.getContext('2d');
+	  	var ctxScratchEl = canvasScratchEl.getContext('2d');
+	  	var canTam = viewerDiv[0].offsetWidth;
+	  	
+	  	ctxDisplayEl.canvas.height = canTam;
+	    ctxDisplayEl.canvas.width = canTam;
+	    ctxScratchEl.canvas.height = canTam;
+	    ctxScratchEl.canvas.width = canTam;
+	    
+	    Turtle.WIDTH = canTam;
+	    Turtle.HEIGHT = canTam;
+	    
+	    if(Turtle.ctxDisplay){
+	    	Turtle.reset();
+	    }
+	    
+	    blocklyEl.style.width = editDiv[0].offsetWidth + 'px';
+	    blocklyEl.style.height = (viewerDiv[0].offsetHeight - 20) + 'px';
+	    
+	    window.width_old = window.innerWidth;
+  		window.height_old = window.innerHeight;
     }
-    
-    blocklyEl.style.width = editDiv[0].offsetWidth + 'px';
-    blocklyEl.style.height = (viewerDiv[0].offsetHeight - 20) + 'px';
   };
   window.addEventListener('resize', onresize);
   onresize();
@@ -183,9 +189,17 @@ Turtle.reset = function() {
  * Copy the scratch canvas to the display canvas. Add a turtle marker.
  */
 Turtle.display = function() {
-  Turtle.ctxDisplay.globalCompositeOperation = 'copy';
-  Turtle.ctxDisplay.drawImage(Turtle.ctxScratch.canvas, 0, 0);
-  Turtle.ctxDisplay.globalCompositeOperation = 'source-over';
+  		var start = new Date().getTime();
+  		
+	Turtle.ctxDisplay.globalCompositeOperation = 'copy';
+	Turtle.ctxDisplay.drawImage(Turtle.ctxScratch.canvas, 0, 0);
+	Turtle.ctxDisplay.globalCompositeOperation = 'source-over';
+  		
+  		var end = new Date().getTime();
+		var time = end - start;
+		console.log('Copy time: ' + time);
+		window.copytime += time; 
+	
   // Draw the turtle.
   if (Turtle.visible) {
     // Draw the turtle body.
@@ -231,18 +245,32 @@ Turtle.display = function() {
  * Click the run button.  Start the program.
  */
 Turtle.runButtonClick = function() {
-  document.getElementById('runButton').style.display = 'none';
-  document.getElementById('resetButton').style.display = 'inline-block';
-  document.getElementById('spinner').style.display = 'inline-block';
-  Blockly.mainWorkspace.traceOn(true);
-  Turtle.execute();
+  	document.getElementById('runButton').style.display = 'none';
+  	document.getElementById('runStepButton').style.display = 'none';
+  	document.getElementById('resetButton').style.display = 'inline-block';
+  	document.getElementById('spinner').style.display = 'inline-block';
+  	Blockly.mainWorkspace.traceOn(true);
+  	Turtle.stepExecution = false;
+  	Turtle.execute();
 };
+
+Turtle.runStepButtonClick = function() {
+	document.getElementById('runButton').style.display = 'none';
+  	document.getElementById('runStepButton').style.display = 'none';
+  	document.getElementById('resetButton').style.display = 'inline-block';
+  	document.getElementById('spinner').style.display = 'inline-block';
+  	Blockly.mainWorkspace.traceOn(true);
+  	Turtle.stepExecution = true;
+  	Turtle.execute();
+};
+
 
 /**
  * Click the reset button.  Reset the Turtle.
  */
 Turtle.resetButtonClick = function() {
   document.getElementById('runButton').style.display = 'inline-block';
+  document.getElementById('runStepButton').style.display = 'inline-block';
   document.getElementById('resetButton').style.display = 'none';
   document.getElementById('spinner').style.display = 'none';
   Blockly.mainWorkspace.traceOn(false);
@@ -285,10 +313,19 @@ Turtle.animate = function() {
   if (!tuple) {
     document.getElementById('spinner').style.display = 'none';
     Blockly.mainWorkspace.highlightBlock(null);
+    
+    window.time = new Date().getTime() - window.time;
+	console.log('Total copytime: ' + window.copytime)
+	console.log('Execution time: ' + window.time);
+    console.log('Percent Copy: '+(window.copytime/window.time));
+    window.time = 0;
+    
     return;
   }
   var command = tuple.shift();
-  BlocklyApps.highlight(tuple.pop());
+  if(Turtle.stepExecution){
+  	BlocklyApps.highlight(tuple.pop()); //Metodo de alto coste
+  }
   Turtle.step(command, tuple);
   Turtle.display();
 

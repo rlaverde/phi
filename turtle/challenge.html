@@ -101,36 +101,38 @@
 			<div id="controls">
 				<div class="control">
 					<a id="runButton" href="" class="button blue" >Ejecutar</a>
-					<a id="resetButton" href="" class="button blue" >Reiniciar</a>
-				</div>
-				<div class="control">
-					<img id="spinner" src="images/loading.gif" height=24 width=24>
-				</div>
-				<div class="control">
-					<svg id="slider" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="150" height="50">
-						<!-- Slow icon. -->
-						<clipPath id="slowClipPath">
-							<rect width=26 height=12 x=5 y=14 />
-						</clipPath>
-						<image xlink:href="images/icons.png" height=42 width=106 x=-21 y=-10 clip-path="url(#slowClipPath)" /><!-- Fast icon. -->
-						<clipPath id="fastClipPath"><rect width=26 height=16 x=120 y=10 /></clipPath>
-						<image xlink:href="images/icons.png" height=42 width=106 x=120 y=-11 clip-path="url(#fastClipPath)" />
-					</svg>	
-				</div>
-				<div class="control">
-					<a id="viewCode" href="" class="button blue" title="Ver el código JavaScript generado.">
-						<img src='js/media/1x1.gif' class="code">
+					<a id="runStepButton" href="" class="button blue" >Ejecutar paso a paso</a>
+					<a id="resetButton" href="" class="button blue" >Reiniciar
+						<img id="spinner" src="images/loading.gif" height=24 width=24>	
 					</a>
 				</div>
-				<div class="control">
-					<a id="linkButton" href="" class="button blue" title="Guardar y enlazar los bloques.">
-						<img src='js/media/1x1.gif' class="link">
-					</a>
-				</div>
-				<div class="control">
-					<a id="captureButton" href="" class="button blue" title="Guardar el dibujo.">
-						<img src='js/media/1x1.gif' class="img">
-					</a>
+				<div>
+					<div class="control">
+						<a id="viewCode" href="" class="button blue" title="Ver el código JavaScript generado.">
+							<img src='js/media/1x1.gif' class="code">
+						</a>
+					</div>
+					<div class="control">
+						<a id="linkButton" href="" class="button blue" title="Guardar y enlazar los bloques.">
+							<img src='js/media/1x1.gif' class="link">
+						</a>
+					</div>
+					<div class="control">
+						<a id="captureButton" href="" class="button blue" title="Guardar el dibujo.">
+							<img src='js/media/1x1.gif' class="img">
+						</a>
+					</div>
+					<div class="control">
+						<svg id="slider" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="150" height="50">
+							<!-- Slow icon. -->
+							<clipPath id="slowClipPath">
+								<rect width=26 height=12 x=5 y=14 />
+							</clipPath>
+							<image xlink:href="images/icons.png" height=42 width=106 x=-21 y=-10 clip-path="url(#slowClipPath)" /><!-- Fast icon. -->
+							<clipPath id="fastClipPath"><rect width=26 height=16 x=120 y=10 /></clipPath>
+							<image xlink:href="images/icons.png" height=42 width=106 x=120 y=-11 clip-path="url(#fastClipPath)" />
+						</svg>	
+					</div>
 				</div>
 			</div>
 		</div>
@@ -241,9 +243,9 @@
 </div>
 <div class="site-generator-wrapper">
 	<div class="site-generator">
-		<p><a href="">UIS Ingenium 2013 </a></p>
-		<p>Based on <a href="http://blockly-demo.appspot.com/static/apps/turtle/index.html">Blockly Turtle</a>. </p>
-		<p>Design by <a href="http://elemisfreebies.com">Elemis</a>.</p>
+		<p><a href="http://www.uis.edu.co/webUIS/es/investigacionExtension/programasApoyo/documentos/2012/estudiantes/UIS%20Ingenium.pdf" target="_blank">UIS Ingenium 2013 </a></p>
+		<p>Based on <a href="http://blockly-demo.appspot.com/static/apps/turtle/index.html" target="_blank">Blockly Turtle</a>. </p>
+		<p>Design by <a href="http://elemisfreebies.com" target="_blank">Elemis</a>.</p>
 	</div>
 </div>
 <!-- End Footer -->

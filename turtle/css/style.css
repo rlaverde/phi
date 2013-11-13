@@ -1571,7 +1571,8 @@ button.disabled {
 }
 
 #spinner{
-	display: none;	
+	display: none;
+	top: 5px;
 }
 
 xml{
