@@ -130,7 +130,7 @@ Turtle.init = function() {
 
   // Initialize the slider.
   var sliderSvg = document.getElementById('slider');
-  Turtle.speedSlider = new Slider(10, 35, 130, sliderSvg);
+  Turtle.speedSlider = new Slider(10, 40, 130, sliderSvg);
 
   // Add the starting block(s).
   // An href with #key trigers an AJAX call to retrieve saved blocks.
@@ -264,7 +264,6 @@ Turtle.runStepButtonClick = function() {
   	Turtle.execute();
 };
 
-
 /**
  * Click the reset button.  Reset the Turtle.
  */
@@ -276,7 +275,6 @@ Turtle.resetButtonClick = function() {
   Blockly.mainWorkspace.traceOn(false);
   Turtle.reset();
 };
-
 
 /**
  * Execute the user's code.  Heaven help us...
@@ -411,6 +409,7 @@ Turtle.createImageLink = function() {
   imgLink.click();
   window.onbeforeunload = temp;
 };
+
 
 // Turtle API.
 

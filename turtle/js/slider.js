@@ -37,7 +37,7 @@ var Slider = function(x, y, width, svgParent, opt_changeFunc) {
   this.KNOB_Y_ = y - 12;
   this.KNOB_MIN_X_ = x + 8;
   this.KNOB_MAX_X_ = x + width - 8;
-  this.value_ = 0.5;
+  this.value_ = 0.0;
   this.changeFunc_ = opt_changeFunc;
 
   // Draw the slider.
@@ -60,7 +60,7 @@ var Slider = function(x, y, width, svgParent, opt_changeFunc) {
   knob.setAttribute('d', 'm 0,0 l -8,8 v 12 h 16 v -12 z');
   svgParent.appendChild(knob);
   this.knob_ = knob;
-  this.setValue(0.5);
+  this.setValue(0.0);
 
   // Find the root SVG object.
   while (svgParent && svgParent.nodeName.toLowerCase() != 'svg') {
@@ -169,7 +169,7 @@ Slider.prototype.getValue = function() {
 Slider.prototype.setValue = function(value) {
   this.value_ = Math.min(Math.max(value, 0), 1);
   var x = this.KNOB_MIN_X_ +
-      (this.KNOB_MAX_X_ - this.KNOB_MIN_X_) * this.value_;
+      (this.KNOB_MAX_X_ - this.KNOB_MIN_X_) * (1.0 - this.value_);
   this.knob_.setAttribute('transform',
       'translate(' + x + ',' + this.KNOB_Y_ + ')');
 };
