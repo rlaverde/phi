@@ -1,0 +1,13 @@
+---
+layout: default
+title: Acerca de Nosotros
+---
+{% for post in site.categories.aboutus  %}
+
+<div>
+<h2>{{ post.title }}</h2>
+     <img src="{{ post.image }}" alt="{{post.title}}"> 
+    {{ post.content }}
+</div>
+
+{% endfor %}
