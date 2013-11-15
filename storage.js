@@ -26,16 +26,13 @@
 // Create a namespace.
 var BlocklyStorage = {};
 
-// Write messages to document once the page is loaded.
-document.write(BlocklyCommonMessages.messages(null, null));
-
 /**
  * Backup code blocks to localStorage.
  * @private
  */
 BlocklyStorage.backupBlocks_ = function() {
   if ('localStorage' in window) {
-    var xml = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace);
+    var xml = Blockly.Xml.workspaceToDom(Blockly.getMainWorkspace());
     // Gets the current URL, not including the hash.
     var url = window.location.href.split('#')[0];
     window.localStorage.setItem(url, Blockly.Xml.domToText(xml));
@@ -56,7 +53,7 @@ BlocklyStorage.restoreBlocks = function() {
   var url = window.location.href.split('#')[0];
   if ('localStorage' in window && window.localStorage[url]) {
     var xml = Blockly.Xml.textToDom(window.localStorage[url]);
-    Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, xml);
+    Blockly.Xml.domToWorkspace(Blockly.getMainWorkspace(), xml);
   }
 };
 
@@ -64,7 +61,7 @@ BlocklyStorage.restoreBlocks = function() {
  * Save blocks to database and return a link containing key to XML.
  */
 BlocklyStorage.link = function() {
-  var xml = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace);
+  var xml = Blockly.Xml.workspaceToDom(Blockly.getMainWorkspace());
   var data = Blockly.Xml.domToText(xml);
   BlocklyStorage.makeRequest_('/storage', 'xml', data);
 };
@@ -74,7 +71,7 @@ BlocklyStorage.link = function() {
  * @param {string} key Key to XML, obtained from href.
  */
 BlocklyStorage.retrieveXml = function(key) {
-  var xml = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace);
+  var xml = Blockly.Xml.workspaceToDom(Blockly.getMainWorkspace());
   BlocklyStorage.makeRequest_('/storage', 'key', key);
 };
 
@@ -114,16 +111,17 @@ BlocklyStorage.makeRequest_ = function(url, name, content) {
 BlocklyStorage.handleRequest_ = function() {
   if (BlocklyStorage.httpRequest_.readyState == 4) {
     if (BlocklyStorage.httpRequest_.status != 200) {
-      window.alert(BlocklyApps.getMsg('httpRequestError') +
-          '  httpRequest_.status: ' + BlocklyStorage.httpRequest_.status);
+      BlocklyStorage.alert(BlocklyStorage.HTTPREQUEST_ERROR + '\n' +
+          'httpRequest_.status: ' + BlocklyStorage.httpRequest_.status);
     } else {
       var data = BlocklyStorage.httpRequest_.responseText.trim();
       if (BlocklyStorage.httpRequest_.name == 'xml') {
         window.location.hash = data;
-        window.alert(BlocklyApps.getMsg('linkAlert').replace('%1', window.location.href));
+        BlocklyStorage.alert(BlocklyStorage.LINK_ALERT.replace('%1',
+            window.location.href));
       } else if (BlocklyStorage.httpRequest_.name == 'key') {
         if (!data.length) {
-          window.alert(BlocklyApps.getMsg('hashError').replace('%1',
+          BlocklyStorage.alert(BlocklyStorage.HASH_ERROR.replace('%1',
               window.location.hash));
         } else {
           BlocklyStorage.loadXml_(data);
@@ -142,11 +140,10 @@ BlocklyStorage.handleRequest_ = function() {
  * @private
  */
 BlocklyStorage.monitorChanges_ = function() {
-  var startXmlDom = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace);
+  var startXmlDom = Blockly.Xml.workspaceToDom(Blockly.getMainWorkspace());
   var startXmlText = Blockly.Xml.domToText(startXmlDom);
-  var canvas = Blockly.mainWorkspace.getCanvas();
   function change() {
-    var xmlDom = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace);
+    var xmlDom = Blockly.Xml.workspaceToDom(Blockly.getMainWorkspace());
     var xmlText = Blockly.Xml.domToText(xmlDom);
     if (startXmlText != xmlText) {
       window.location.hash = '';
@@ -165,10 +162,19 @@ BlocklyStorage.loadXml_ = function(xml) {
   try {
     xml = Blockly.Xml.textToDom(xml);
   } catch (e) {
-    window.alert(BlocklyApps.getMsg(xmlError) + '\nxml: ' + xml);
+    BlocklyStorage.alert(BlocklyStorage.XML_ERROR + '\nXML: ' + xml);
     return;
   }
   // Clear the workspace to avoid merge.
-  Blockly.mainWorkspace.clear();
-  Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, xml);
+  Blockly.getMainWorkspace().clear();
+  Blockly.Xml.domToWorkspace(Blockly.getMainWorkspace(), xml);
+};
+
+/**
+ * Present a text message to the user.
+ * Designed to be overridden if an app has custom dialogs, or a butter bar.
+ * @param {string} message Text to alert.
+ */
+BlocklyStorage.alert = function(message) {
+  window.alert(message);
 };

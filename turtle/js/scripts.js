@@ -43,7 +43,18 @@ jQuery(document).ready(function($)  {
 		Turtle.createImageLink();
 		return false;
 	});
-	
+	$('#controls-1-1').click(function(){
+		$('#control-left').removeClass('one-third');
+		$('#control-right').removeClass('two-third');
+		$('#control-right').removeClass('last');
+		$('#control-left').addClass('one-half');
+		$('#control-right').addClass('one-half');
+		$('#control-right').addClass('last');
+		window.width_old = 0;
+  		window.height_old = 0;
+		Turtle.onresize();
+		return false;
+	});
 	
 });
 
