@@ -1,0 +1,2 @@
+source:      turtle
+exclude:     ["app.yaml" , "closure-library-read-only",  "favicon.ico" , "index_redirect.py",  "index.yaml",  "README.txt",  "report.py",  "storage.js",  "storage.py",  "turtle"]
