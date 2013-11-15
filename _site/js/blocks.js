@@ -1,5 +1,5 @@
 /**
- * Blockly Demo: Turtle Graphics
+ * Blockly Apps: Turtle Graphics Blocks
  *
  * Copyright 2012 Google Inc.
  * http://blockly.googlecode.com/
@@ -18,210 +18,199 @@
  */
 
 /**
- * @fileoverview Demonstration of Blockly: Turtle Graphics.
+ * @fileoverview Blocks for Blockly's Turtle Graphics application.
  * @author fraser@google.com (Neil Fraser)
  */
 'use strict';
 
 // Extensions to Blockly's language and JavaScript generator.
 
-Blockly.JavaScript = Blockly.Generator.get('JavaScript');
-
-Blockly.Language.draw_move = {
+Blockly.Blocks['draw_move'] = {
   // Block for moving forward or backwards.
-  helpUrl: '',
   init: function() {
+    var DIRECTIONS =
+        [[BlocklyApps.getMsg('Turtle_moveForward'), 'moveForward'],
+         [BlocklyApps.getMsg('Turtle_moveBackward'), 'moveBackward']];
     this.setColour(160);
     this.appendValueInput('VALUE')
         .setCheck('Number')
-        .appendTitle(new Blockly.FieldDropdown(
-            Blockly.Language.draw_move.DIRECTIONS), 'DIR');
+        .appendTitle(new Blockly.FieldDropdown(DIRECTIONS), 'DIR');
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setTooltip(MSG.moveTooltip);
+    this.setTooltip(BlocklyApps.getMsg('Turtle_moveTooltip'));
   }
 };
 
-Blockly.Language.draw_move.DIRECTIONS =
-    [[MSG.moveForward, 'moveForward'], [MSG.moveBackward, 'moveBackward']];
-
-Blockly.JavaScript.draw_move = function() {
+Blockly.JavaScript['draw_move'] = function(block) {
   // Generate JavaScript for moving forward or backwards.
-  var value = Blockly.JavaScript.valueToCode(this, 'VALUE',
+  var value = Blockly.JavaScript.valueToCode(block, 'VALUE',
       Blockly.JavaScript.ORDER_NONE) || '0';
-  return 'Turtle.' + this.getTitleValue('DIR') +
-      '(' + value + ', \'block_id_' + this.id + '\');\n';
+  return 'Turtle.' + block.getTitleValue('DIR') +
+      '(' + value + ', \'block_id_' + block.id + '\');\n';
 };
 
 
-Blockly.Language.draw_turn = {
+Blockly.Blocks['draw_turn'] = {
   // Block for turning left or right.
-  helpUrl: '',
   init: function() {
+    var DIRECTIONS =
+        [[BlocklyApps.getMsg('Turtle_turnRight'), 'turnRight'],
+         [BlocklyApps.getMsg('Turtle_turnLeft'), 'turnLeft']];
     this.setColour(160);
     this.appendValueInput('VALUE')
         .setCheck('Number')
-        .appendTitle(new Blockly.FieldDropdown(
-            Blockly.Language.draw_turn.DIRECTIONS), 'DIR');
+        .appendTitle(new Blockly.FieldDropdown(DIRECTIONS), 'DIR');
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setTooltip(MSG.turnTooltip);
+    this.setTooltip(BlocklyApps.getMsg('Turtle_turnTooltip'));
   }
 };
 
-Blockly.Language.draw_turn.DIRECTIONS =
-    [[MSG.turnRight, 'turnRight'], [MSG.turnLeft, 'turnLeft']];
-
-Blockly.JavaScript.draw_turn = function() {
+Blockly.JavaScript['draw_turn'] = function(block) {
   // Generate JavaScript for turning left or right.
-  var value = Blockly.JavaScript.valueToCode(this, 'VALUE',
+  var value = Blockly.JavaScript.valueToCode(block, 'VALUE',
       Blockly.JavaScript.ORDER_NONE) || '0';
-  return 'Turtle.' + this.getTitleValue('DIR') +
-      '(' + value + ', \'block_id_' + this.id + '\');\n';
+  return 'Turtle.' + block.getTitleValue('DIR') +
+      '(' + value + ', \'block_id_' + block.id + '\');\n';
 };
 
-Blockly.Language.draw_width = {
+Blockly.Blocks['draw_width'] = {
   // Block for setting the width.
-  helpUrl: '',
   init: function() {
     this.setColour(160);
     this.appendValueInput('WIDTH')
         .setCheck('Number')
-        .appendTitle(MSG.setWidth);
+        .appendTitle(BlocklyApps.getMsg('Turtle_setWidth'));
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setTooltip(MSG.widthTooltip);
+    this.setTooltip(BlocklyApps.getMsg('Turtle_widthTooltip'));
   }
 };
 
-Blockly.JavaScript.draw_width = function() {
+Blockly.JavaScript['draw_width'] = function(block) {
   // Generate JavaScript for setting the width.
-  var width = Blockly.JavaScript.valueToCode(this, 'WIDTH',
+  var width = Blockly.JavaScript.valueToCode(block, 'WIDTH',
       Blockly.JavaScript.ORDER_NONE) || '1';
-  return 'Turtle.penWidth(' + width + ', \'block_id_' + this.id + '\');\n';
+  return 'Turtle.penWidth(' + width + ', \'block_id_' + block.id + '\');\n';
 };
 
-Blockly.Language.draw_pen = {
+Blockly.Blocks['draw_pen'] = {
   // Block for pen up/down.
-  helpUrl: '',
   init: function() {
+    var STATE =
+        [[BlocklyApps.getMsg('Turtle_penUp'), 'penUp'],
+         [BlocklyApps.getMsg('Turtle_penDown'), 'penDown']];
     this.setColour(160);
     this.appendDummyInput()
-        .appendTitle(new Blockly.FieldDropdown(this.STATE), 'PEN');
+        .appendTitle(new Blockly.FieldDropdown(STATE), 'PEN');
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setTooltip(MSG.penTooltip);
+    this.setTooltip(BlocklyApps.getMsg('Turtle_penTooltip'));
   }
 };
 
-Blockly.Language.draw_pen.STATE = [[MSG.penUp, 'penUp'], [MSG.penDown, 'penDown']];
-
-Blockly.JavaScript.draw_pen = function() {
+Blockly.JavaScript['draw_pen'] = function(block) {
   // Generate JavaScript for pen up/down.
-  return 'Turtle.' + this.getTitleValue('PEN') +
-      '(\'block_id_' + this.id + '\');\n';
+  return 'Turtle.' + block.getTitleValue('PEN') +
+      '(\'block_id_' + block.id + '\');\n';
 };
 
-Blockly.Language.draw_colour = {
+Blockly.Blocks['draw_colour'] = {
   // Block for setting the colour.
-  helpUrl: '',
   init: function() {
     this.setColour(20);
     this.appendValueInput('COLOUR')
         .setCheck('Colour')
-        .appendTitle(MSG.setColour);
+        .appendTitle(BlocklyApps.getMsg('Turtle_setColour'));
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setTooltip(MSG.colourTooltip);
+    this.setTooltip(BlocklyApps.getMsg('Turtle_colourTooltip'));
   }
 };
 
-Blockly.JavaScript.draw_colour = function() {
+Blockly.JavaScript['draw_colour'] = function(block) {
   // Generate JavaScript for setting the colour.
-  var colour = Blockly.JavaScript.valueToCode(this, 'COLOUR',
+  var colour = Blockly.JavaScript.valueToCode(block, 'COLOUR',
       Blockly.JavaScript.ORDER_NONE) || '\'#000000\'';
   return 'Turtle.penColour(' + colour + ', \'block_id_' +
-      this.id + '\');\n';
+      block.id + '\');\n';
 };
 
-Blockly.Language.turtle_visibility = {
+Blockly.Blocks['turtle_visibility'] = {
   // Block for changing turtle visiblity.
-  helpUrl: '',
   init: function() {
+    var STATE =
+        [[BlocklyApps.getMsg('Turtle_hideTurtle'), 'hideTurtle'],
+         [BlocklyApps.getMsg('Turtle_showTurtle'), 'showTurtle']];
     this.setColour(160);
     this.setPreviousStatement(true, null);
     this.setNextStatement(true, null);
     this.appendDummyInput()
-        .appendTitle(new Blockly.FieldDropdown(this.STATE), 'VISIBILITY');
-    this.setTooltip(MSG.turtleVisibilityTooltip);
+        .appendTitle(new Blockly.FieldDropdown(STATE), 'VISIBILITY');
+    this.setTooltip(BlocklyApps.getMsg('Turtle_turtleVisibilityTooltip'));
   }
 };
 
-Blockly.Language.turtle_visibility.STATE =
-    [[MSG.hideTurtle, 'hideTurtle'], [MSG.showTurtle, 'showTurtle']];
-
-Blockly.JavaScript.turtle_visibility = function() {
+Blockly.JavaScript['turtle_visibility'] = function(block) {
   // Generate JavaScript for changing turtle visibility.
-  return 'Turtle.' + this.getTitleValue('VISIBILITY') +
-      '(\'block_id_' + this.id + '\');\n';
+  return 'Turtle.' + block.getTitleValue('VISIBILITY') +
+      '(\'block_id_' + block.id + '\');\n';
 };
 
-Blockly.Language.draw_print = {
+Blockly.Blocks['draw_print'] = {
   // Block for printing text.
-  helpUrl: MSG.printHelpUrl,
   init: function() {
+    this.setHelpUrl(BlocklyApps.getMsg('Turtle_printHelpUrl'));
     this.setColour(160);
     this.appendValueInput('TEXT')
-        .appendTitle(MSG.print);
+        .appendTitle(BlocklyApps.getMsg('Turtle_print'));
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setTooltip(MSG.printTooltip);
+    this.setTooltip(BlocklyApps.getMsg('Turtle_printTooltip'));
   }
 };
 
-Blockly.JavaScript.draw_print = function() {
+Blockly.JavaScript['draw_print'] = function(block) {
   // Generate JavaScript for printing text.
-  var argument0 = String(Blockly.JavaScript.valueToCode(this, 'TEXT',
+  var argument0 = String(Blockly.JavaScript.valueToCode(block, 'TEXT',
       Blockly.JavaScript.ORDER_NONE) || '\'\'');
   return 'Turtle.drawPrint(' + argument0 + ', \'block_id_' +
-      this.id + '\');\n';
+      block.id + '\');\n';
 };
 
-Blockly.Language.draw_font = {
+Blockly.Blocks['draw_font'] = {
   // Block for setting the font.
-  helpUrl: MSG.fontHelpUrl,
   init: function() {
+    var FONTLIST = // Common font names (intentionally not localized)
+        [['Arial', 'Arial'], ['Courier New', 'Courier New'], ['Georgia', 'Georgia'],
+         ['Impact', 'Impact'], ['Times New Roman', 'Times New Roman'],
+         ['Trebuchet MS', 'Trebuchet MS'], ['Verdana', 'Verdana']];
+    var STYLE =
+        [[BlocklyApps.getMsg('Turtle_fontNormal'), 'normal'],
+         [BlocklyApps.getMsg('Turtle_fontItalic'), 'italic'],
+         [BlocklyApps.getMsg('Turtle_fontBold'), 'bold']];
+    this.setHelpUrl(BlocklyApps.getMsg('Turtle_fontHelpUrl'));
     this.setColour(160);
     this.appendDummyInput()
-        .appendTitle(MSG.font)
-        .appendTitle(new Blockly.FieldDropdown(this.FONTLIST), 'FONT');
+        .appendTitle(BlocklyApps.getMsg('Turtle_font'))
+        .appendTitle(new Blockly.FieldDropdown(FONTLIST), 'FONT');
     this.appendDummyInput()
-        .appendTitle(MSG.fontSize)
+        .appendTitle(BlocklyApps.getMsg('Turtle_fontSize'))
         .appendTitle(new Blockly.FieldTextInput('18',
                      Blockly.FieldTextInput.nonnegativeIntegerValidator),
                      'FONTSIZE');
     this.appendDummyInput()
-        .appendTitle(new Blockly.FieldDropdown(this.STYLE), 'FONTSTYLE');
+        .appendTitle(new Blockly.FieldDropdown(STYLE), 'FONTSTYLE');
     this.setPreviousStatement(true);
     this.setNextStatement(true);
-    this.setTooltip(MSG.fontTooltip);
+    this.setTooltip(BlocklyApps.getMsg('Turtle_fontTooltip'));
   }
 };
 
-Blockly.Language.draw_font.FONTLIST =
-    // Common font names (intentionally not localized)
-    [['Arial', 'Arial'], ['Courier New', 'Courier New'], ['Georgia', 'Georgia'],
-     ['Impact', 'Impact'], ['Times New Roman', 'Times New Roman'],
-     ['Trebuchet MS', 'Trebuchet MS'], ['Verdana', 'Verdana']];
-
-Blockly.Language.draw_font.STYLE =
-    [[MSG.fontNormal, 'normal'], [MSG.fontItalic, 'italic'],
-     [MSG.fontBold, 'bold']];
-
-Blockly.JavaScript.draw_font = function() {
+Blockly.JavaScript['draw_font'] = function(block) {
   // Generate JavaScript for setting the font.
-  return 'Turtle.drawFont(\'' + this.getTitleValue('FONT') + '\',' +
-      Number(this.getTitleValue('FONTSIZE')) + ',\'' +
-      this.getTitleValue('FONTSTYLE') + '\', \'block_id_' +
-      this.id + '\');\n';
+  return 'Turtle.drawFont(\'' + block.getTitleValue('FONT') + '\',' +
+      Number(block.getTitleValue('FONTSIZE')) + ',\'' +
+      block.getTitleValue('FONTSTYLE') + '\', \'block_id_' +
+      block.id + '\');\n';
 };

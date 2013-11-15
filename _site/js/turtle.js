@@ -50,9 +50,49 @@ Turtle.visible = true;
  * Initialize Blockly and the turtle.  Called on page load.
  */
 Turtle.init = function() {
+  // inicio BlocklyApps
+   
+  // Set the HTML's language and direction.
   // document.dir fails in Mozilla, use document.body.parentNode.dir instead.
   // https://bugzilla.mozilla.org/show_bug.cgi?id=151407
-  var rtl = document.body.parentNode.dir == 'rtl';
+  var rtl = BlocklyApps.isRtl();
+  document.head.parentElement.setAttribute('dir', rtl ? 'rtl' : 'ltr');
+  document.head.parentElement.setAttribute('lang', BlocklyApps.LANG);
+
+  // Disable the link button if page isn't backed by App Engine storage.
+  var linkButton = document.getElementById('linkButton');
+  if ('BlocklyStorage' in window) {
+    BlocklyStorage['HTTPREQUEST_ERROR'] =
+        BlocklyApps.getMsg('httpRequestError');
+    BlocklyStorage['LINK_ALERT'] = BlocklyApps.getMsg('linkAlert');
+    BlocklyStorage['HASH_ERROR'] = BlocklyApps.getMsg('hashError');
+    BlocklyStorage['XML_ERROR'] = BlocklyApps.getMsg('xmlError');
+    // Swap out the BlocklyStorage's alert() for a nicer dialog.
+    BlocklyStorage.alert = BlocklyApps.storageAlert;
+    BlocklyApps.bindClick('linkButton', BlocklyStorage.link);
+  } else if (linkButton) {
+    linkButton.className = 'disabled';
+  }
+
+  if (document.getElementById('codeButton')) {
+    BlocklyApps.bindClick('codeButton', BlocklyApps.showCode);
+  }
+
+  // Fixes viewport for small screens.
+  var viewport = document.querySelector('meta[name="viewport"]');
+  if (viewport && screen.availWidth < 725) {
+    viewport.setAttribute('content',
+        'width=725, initial-scale=.35, user-scalable=no');
+  }
+   
+    
+  // Fin BlocklyApps
+   
+    
+   
+  // document.dir fails in Mozilla, use document.body.parentNode.dir instead.
+  // https://bugzilla.mozilla.org/show_bug.cgi?id=151407
+  var rtl = BlocklyApps.isRtl();
   var toolbox = document.getElementById('toolbox');
   Blockly.inject(document.getElementById('blockly'),
       {path: 'js/',
@@ -68,8 +108,8 @@ Turtle.init = function() {
 
   window.addEventListener('beforeunload', function(e) {
     if (Blockly.mainWorkspace.getAllBlocks().length > 2) {
-      e.returnValue = MSG.unloadWarning;  // Gecko.
-      return MSG.unloadWarning;  // Webkit.
+      e.returnValue = BlocklyApps.getMsg('Turtle_unloadWarning');  // Gecko.
+      return BlocklyApps.getMsg('Turtle_unloadWarning');  // Webkit.
     }
     return null;
   });
@@ -77,18 +117,18 @@ Turtle.init = function() {
   window.width_old = 0;
   window.height_old = 0;
   
-  var onresize = function(e) {
+  Turtle['onresize'] = function(e) {
   	if((window.width_old != window.innerWidth) || (window.height_old != window.innerHeight)){
 	  	console.log('Resize');
 	  	
 	  	var blocklyEl = document.getElementById('blockly');
 	  	var canvasDisplayEl = document.getElementById('display');
 	  	var canvasScratchEl = document.getElementById('scratch');
-	  	var viewerDiv = document.getElementsByClassName('one-third');
-	  	var editDiv = document.getElementsByClassName('two-third');
+	  	var controlLeft = document.getElementById('control-left');
+	  	var controlRight = document.getElementById('control-right');
 	  	var ctxDisplayEl = canvasDisplayEl.getContext('2d');
 	  	var ctxScratchEl = canvasScratchEl.getContext('2d');
-	  	var canTam = viewerDiv[0].offsetWidth;
+	  	var canTam = controlLeft.offsetWidth;
 	  	
 	  	ctxDisplayEl.canvas.height = canTam;
 	    ctxDisplayEl.canvas.width = canTam;
@@ -102,58 +142,53 @@ Turtle.init = function() {
 	    	Turtle.reset();
 	    }
 	    
-	    blocklyEl.style.width = editDiv[0].offsetWidth + 'px';
-	    blocklyEl.style.height = (viewerDiv[0].offsetHeight - 20) + 'px';
+	    blocklyEl.style.width = controlRight.offsetWidth + 'px';
+	    blocklyEl.style.height = (controlLeft.offsetHeight - 20) + 'px';
 	    
 	    window.width_old = window.innerWidth;
   		window.height_old = window.innerHeight;
     }
   };
-  window.addEventListener('resize', onresize);
-  onresize();
+  window.addEventListener('resize', Turtle.onresize);
+  Turtle.onresize();
+  Blockly.fireUiEvent(window, 'resize');
 
-  if (!('BlocklyStorage' in window)) {
-    document.getElementById('linkButton').className = 'disabled';
-  }
-
-  // Hide download button if browser lacks support
-  // (http://caniuse.com/#feat=download).
-  if (!(goog.userAgent.GECKO ||
+ if (!(goog.userAgent.GECKO ||
        (goog.userAgent.WEBKIT && !goog.userAgent.SAFARI))) {
-       	
-    var captureBtn = document.getElementById('captureButton');
-    if(captureBtn){
-    	captureBtn.className = 'disabled';	
-    }
-    
-  }
-
-  // Initialize the slider.
-  var sliderSvg = document.getElementById('slider');
-  Turtle.speedSlider = new Slider(10, 40, 130, sliderSvg);
-
-  // Add the starting block(s).
-  // An href with #key trigers an AJAX call to retrieve saved blocks.
-  if ('BlocklyStorage' in window && window.location.hash.length > 1) {
-    BlocklyStorage.retrieveXml(window.location.hash.substring(1));
+    document.getElementById('captureButton').className = 'disabled';
   } else {
-    // Load the editor with starting blocks.
-    var xml =
-        '  <block type="draw_move" x="70" y="70">' +
-        '    <value name="VALUE">' +
-        '      <block type="math_number">' +
-        '        <title name="NUM">100</title>' +
-        '      </block>' +
-        '    </value>' +
-        '  </block>';
-    xml = Blockly.Xml.textToDom('<xml>' + xml + '</xml>');
-    Blockly.Xml.domToWorkspace(Blockly.mainWorkspace, xml);
+    BlocklyApps.bindClick('captureButton', Turtle.createImageLink);
   }
+ 
+// Initialize the slider.
+  var sliderSvg = document.getElementById('slider');
+  Turtle.speedSlider = new Slider(10, 35, 130, sliderSvg);
+
+  var defaultXml =
+      '<xml>' +
+      '  <block type="draw_move" x="70" y="70">' +
+      '    <value name="VALUE">' +
+      '      <block type="math_number">' +
+      '        <title name="NUM">100</title>' +
+      '      </block>' +
+      '    </value>' +
+      '  </block>' +
+      '</xml>';
+  BlocklyApps.loadBlocks(defaultXml);
 
   Turtle.ctxDisplay = document.getElementById('display').getContext('2d');
   Turtle.ctxScratch = document.getElementById('scratch').getContext('2d');
   Turtle.reset();
-};
+	
+
+ 
+  window.setTimeout(BlocklyApps.importPrettify, 1);
+  /*
+   if (!('BlocklyStorage' in window)) {
+    document.getElementById('linkButton').className = 'disabled';
+  }*/
+ 
+  };
 
 window.addEventListener('load', Turtle.init);
 
@@ -162,14 +197,14 @@ window.addEventListener('load', Turtle.init);
  * pending tasks.
  */
 Turtle.reset = function() {
-  // Starting location and heading of the turtle.
+// Starting location and heading of the turtle.
   Turtle.x = Turtle.HEIGHT / 2;
   Turtle.y = Turtle.WIDTH / 2;
   Turtle.heading = 0;
   Turtle.penDownValue = true;
   Turtle.visible = true;
 
-  // Clear the display.
+// Clear the display.
   Turtle.ctxScratch.canvas.width = Turtle.ctxScratch.canvas.width;
   Turtle.ctxScratch.strokeStyle = '#000000';
   Turtle.ctxScratch.fillStyle = '#000000';
@@ -177,7 +212,7 @@ Turtle.reset = function() {
   Turtle.ctxScratch.lineCap = 'round';
   Turtle.ctxScratch.font = 'normal 18pt Arial';
   Turtle.display();
-
+   
   // Kill any task.
   if (Turtle.pid) {
     window.clearTimeout(Turtle.pid);
@@ -191,9 +226,11 @@ Turtle.reset = function() {
 Turtle.display = function() {
   		var start = new Date().getTime();
   		
-	Turtle.ctxDisplay.globalCompositeOperation = 'copy';
-	Turtle.ctxDisplay.drawImage(Turtle.ctxScratch.canvas, 0, 0);
-	Turtle.ctxDisplay.globalCompositeOperation = 'source-over';
+
+ 
+  Turtle.ctxDisplay.globalCompositeOperation = 'copy';
+  Turtle.ctxDisplay.drawImage(Turtle.ctxScratch.canvas, 0, 0);
+  Turtle.ctxDisplay.globalCompositeOperation = 'source-over';
   		
   		var end = new Date().getTime();
 		var time = end - start;
@@ -202,12 +239,15 @@ Turtle.display = function() {
 	
   // Draw the turtle.
   if (Turtle.visible) {
+    // Make the turtle the colour of the pen.
+    Turtle.ctxDisplay.strokeStyle = Turtle.ctxScratch.strokeStyle;
+    Turtle.ctxDisplay.fillStyle = Turtle.ctxScratch.fillStyle;
+     
     // Draw the turtle body.
     var radius = Turtle.ctxScratch.lineWidth / 2 + 10;
     Turtle.ctxDisplay.beginPath();
     Turtle.ctxDisplay.arc(Turtle.x, Turtle.y, radius, 0, 2 * Math.PI, false);
     Turtle.ctxDisplay.lineWidth = 3;
-    Turtle.ctxDisplay.strokeStyle = '#339933';
     Turtle.ctxDisplay.stroke();
 
     // Draw the turtle head.
@@ -231,7 +271,6 @@ Turtle.display = function() {
     var rightX = Turtle.x + (radius + ARROW_TIP) * Math.sin(radians);
     var rightY = Turtle.y - (radius + ARROW_TIP) * Math.cos(radians);
     Turtle.ctxDisplay.beginPath();
-    Turtle.ctxDisplay.fillStyle = '#339933';
     Turtle.ctxDisplay.moveTo(tipX, tipY);
     Turtle.ctxDisplay.lineTo(leftX, leftY);
     Turtle.ctxDisplay.bezierCurveTo(leftControlX, leftControlY,
@@ -245,9 +284,19 @@ Turtle.display = function() {
  * Click the run button.  Start the program.
  */
 Turtle.runButtonClick = function() {
-  	document.getElementById('runButton').style.display = 'none';
-  	document.getElementById('runStepButton').style.display = 'none';
-  	document.getElementById('resetButton').style.display = 'inline-block';
+  	var runButton = document.getElementById('runButton');
+  	var runStepButton = document.getElementById('runStepButton');
+  	var resetButton = document.getElementById('resetButton');
+  	
+  	// Ensure that Reset button is at least as wide as Run button.
+	if (!resetButton.style.minWidth) {
+		resetButton.style.minWidth = runButton.offsetWidth + 'px';
+	}
+  	
+  	runButton.style.display = 'none';
+  	runStepButton.style.display = 'none';
+  	resetButton.style.display = 'inline-block';
+  	
   	document.getElementById('spinner').style.display = 'inline-block';
   	Blockly.mainWorkspace.traceOn(true);
   	Turtle.stepExecution = false;
@@ -255,9 +304,19 @@ Turtle.runButtonClick = function() {
 };
 
 Turtle.runStepButtonClick = function() {
-	document.getElementById('runButton').style.display = 'none';
-  	document.getElementById('runStepButton').style.display = 'none';
-  	document.getElementById('resetButton').style.display = 'inline-block';
+	var runButton = document.getElementById('runButton');
+  	var runStepButton = document.getElementById('runStepButton');
+  	var resetButton = document.getElementById('resetButton');
+  	
+  	// Ensure that Reset button is at least as wide as Run button.
+	if (!resetButton.style.minWidth) {
+		resetButton.style.minWidth = runButton.offsetWidth + 'px';
+	}
+  	
+  	runButton.style.display = 'none';
+  	runStepButton.style.display = 'none';
+  	resetButton.style.display = 'inline-block';
+  	
   	document.getElementById('spinner').style.display = 'inline-block';
   	Blockly.mainWorkspace.traceOn(true);
   	Turtle.stepExecution = true;
@@ -283,20 +342,20 @@ Turtle.execute = function() {
   BlocklyApps.log = [];
   BlocklyApps.ticks = 1000000;
 
-  var code = Blockly.Generator.workspaceToCode('JavaScript');
+  var code = Blockly.JavaScript.workspaceToCode();
   try {
     eval(code);
   } catch (e) {
     // Null is thrown for infinite loop.
     // Otherwise, abnormal termination is a user error.
-    if (e !== null) {
+    if (e !== Infinity) {
       alert(e);
     }
   }
 
   // BlocklyApps.log now contains a transcript of all the user's actions.
   // Reset the graphic and animate the transcript.
-  Turtle.reset();
+ Turtle.reset();
   Turtle.pid = window.setTimeout(Turtle.animate, 100);
 };
 
@@ -304,10 +363,10 @@ Turtle.execute = function() {
  * Iterate through the recorded path and animate the turtle's actions.
  */
 Turtle.animate = function() {
-  // All tasks should be complete now.  Clean up the PID list.
+// All tasks should be complete now.  Clean up the PID list.
   Turtle.pid = 0;
 
-  var tuple = BlocklyApps.log.shift();
+ var tuple = BlocklyApps.log.shift();
   if (!tuple) {
     document.getElementById('spinner').style.display = 'none';
     Blockly.mainWorkspace.highlightBlock(null);
@@ -328,7 +387,7 @@ Turtle.animate = function() {
   Turtle.display();
 
   // Scale the speed non-linearly, to give better precision at the fast end.
-  var stepSpeed = 1000 * Math.pow(Turtle.speedSlider.getValue(), 2);
+  var stepSpeed = 1000 * Math.pow(1 - Turtle.speedSlider.getValue(), 2);
   Turtle.pid = window.setTimeout(Turtle.animate, stepSpeed);
 };
 
