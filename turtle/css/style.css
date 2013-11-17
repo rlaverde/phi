@@ -1471,6 +1471,7 @@ li.post.pingback p {
 #blockly {
   width: 400px;
   height: 300px;
+  color: #000;
 }
 #scratch{
 	display: none;
