@@ -1,5 +1,5 @@
 /**
- * Blockly Demo: SVG Slider
+ * Blockly Apps: SVG Slider
  *
  * Copyright 2012 Google Inc.
  * http://blockly.googlecode.com/
@@ -37,7 +37,7 @@ var Slider = function(x, y, width, svgParent, opt_changeFunc) {
   this.KNOB_Y_ = y - 12;
   this.KNOB_MIN_X_ = x + 8;
   this.KNOB_MAX_X_ = x + width - 8;
-  this.value_ = 0.0;
+  this.value_ = 1.0;
   this.changeFunc_ = opt_changeFunc;
 
   // Draw the slider.
@@ -60,7 +60,7 @@ var Slider = function(x, y, width, svgParent, opt_changeFunc) {
   knob.setAttribute('d', 'm 0,0 l -8,8 v 12 h 16 v -12 z');
   svgParent.appendChild(knob);
   this.knob_ = knob;
-  this.setValue(0.0);
+  this.setValue(1.0);
 
   // Find the root SVG object.
   while (svgParent && svgParent.nodeName.toLowerCase() != 'svg') {
@@ -129,7 +129,7 @@ Slider.mouseOver_ = function(e) {
     if (node == Slider.activeSlider_.SVG_) {
       return;
     }
-  } while (node = node.parentNode)
+  } while (node = node.parentNode);
   Slider.knobMouseUp_(e);
 };
 
@@ -149,7 +149,7 @@ Slider.knobMouseMove_ = function(e) {
   thisSlider.knob_.setAttribute('transform',
       'translate(' + x + ',' + thisSlider.KNOB_Y_ + ')');
 
-  thisSlider.value_ = 1 - (x - thisSlider.KNOB_MIN_X_) /
+  thisSlider.value_ = (x - thisSlider.KNOB_MIN_X_) /
       (thisSlider.KNOB_MAX_X_ - thisSlider.KNOB_MIN_X_);
   thisSlider.changeFunc_ && thisSlider.changeFunc_(thisSlider.value_);
 };
@@ -169,7 +169,7 @@ Slider.prototype.getValue = function() {
 Slider.prototype.setValue = function(value) {
   this.value_ = Math.min(Math.max(value, 0), 1);
   var x = this.KNOB_MIN_X_ +
-      (this.KNOB_MAX_X_ - this.KNOB_MIN_X_) * (1.0 - this.value_);
+      (this.KNOB_MAX_X_ - this.KNOB_MIN_X_) * this.value_;
   this.knob_.setAttribute('transform',
       'translate(' + x + ',' + this.KNOB_Y_ + ')');
 };
