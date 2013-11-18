@@ -24,7 +24,7 @@ jQuery(document).ready(function($)  {
 			
 			return false;
 		});
-		$('#codeButton').click(function(){
+		$('#viewCode').click(function(){
 			
 			return false;
 		});
