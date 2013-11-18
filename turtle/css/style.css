@@ -241,7 +241,7 @@ h2.title a {
 }
 ul {
     margin-bottom: 20px;
-    list--type: circle;
+    list-style-type: circle;
     list-style-position: inside;
 }
 ul li {
