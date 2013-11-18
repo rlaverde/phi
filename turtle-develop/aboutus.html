@@ -1,0 +1,30 @@
+---
+layout: default
+title: Acerca de Nosotros
+---
+{% for post in site.categories.aboutus  %}
+
+<div class = "{% cycle 'one-third', 'one-third', 'one-third last' %}" >
+
+<div class="post format-image box masonry-brick", style="padding-bottom: 0px;">
+    <div class="frame">
+            <img src="{{ post.image }}" alt="{{post.title}}">
+   </div>
+   <h2>{{ post.title }}</h2>
+            {{ post.content }}
+</div>
+</div>
+    
+    {%cycle '', '', '<div class="clear"></div>' %}
+<!--
+<div>
+<h2>{{ post.title }}</h2>
+     <div class="one-fourth">
+     <img src="{{ post.image }}" alt="{{post.title}}"> 
+    </div>
+    <div class="three-fourth last">
+    {{ post.content }}
+    </div>
+     <div class="clear"></div>
+</div>-->
+{% endfor %}

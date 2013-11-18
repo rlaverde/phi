@@ -1,0 +1,28 @@
+---
+layout: default
+title: Ejemplos
+---
+{% for post in site.categories.examples  %}
+
+<div class = "{% cycle 'one-third', 'one-third', 'one-third last' %}" >
+
+<div class="post format-image box masonry-brick", style="padding-bottom: 0px;">
+    <div class="frame">
+            <a href="{{post.sitio}}#{{post.identificador}}">
+                <img src="{{ post.image }}" alt="{{post.title}}">
+            </a>
+   </div>
+   <h2>{{ post.title }}</h2>
+            {{ post.content }}
+            
+   <div class="details">
+        <span class="icon-image">
+            <a href="http://phi.uis.edu.co/challenge.html#{{post.identificador}}">Probar Código</a>
+       </span>
+   </div>
+</div>
+</div>
+    
+    {%cycle '', '', '<div class="clear"></div>' %}
+
+{% endfor %}
