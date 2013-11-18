@@ -1,8 +1,7 @@
 ---
 layout: default
-title: Inicio
+title: Plataforma de generación de formas geométricas.
 ---
-## Plataforma de generación de formas geométricas.
 
 Con la finalidad de promover el pensamiento lógico y las habilidades artísticas
 en los miembros de la comunidad UIS, se pone a consideración de la misma un 

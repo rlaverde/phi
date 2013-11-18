@@ -1,9 +1,10 @@
 ---
 layout: post
-title: Copo de nieve de koch
+title: Curva de Koch
 category: examples
-image: images/examples/copo_koch.png
-identificador: 627npd
+image: images/examples/curva_koch.png
+identificador: jvieqx
+sitio: http://phi.uis.edu.co/challenge.html
 ---
 El **copo de nieve de Koch**, también llamado estrella de Koch, es una curva
 cerrada continua pero no diferenciable en ningún punto descrita por el

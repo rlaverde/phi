@@ -19,12 +19,12 @@
 	<script type="text/javascript" src="js/jquery/selectnav.js"></script>
 	<script type="text/javascript" src="js/jquery/jquery.backstretch.min.js"></script>
 	<script type="text/javascript">
-		$.backstretch("images/bg/9.jpg");
+		$.backstretch("images/bg/1.jpg");
 	</script>
 	
 	<!--<script type="text/javascript" src="js/en.js"></script>-->
 	
-	
+	<script type="text/javascript" src="js/prefixfree.min.js"></script> 
 	<script type="text/javascript" src="js/soyutils.js"></script> 
 	<script type="text/javascript" src="js/common.js"></script>
 	<script type="text/javascript" src="js/es.js"></script>
@@ -55,35 +55,26 @@
 		<!-- Begin Menu -->
 		<div id="menu-wrapper">
 			<div id="menu" class="menu">
-				<ul id="tiny">
-					<li class="active"><a href="index.html">Inicio</a>
-						<ul>
-							<li><a href="#home">Inicio</a></li>
-						</ul>
-					</li>
-					<li><a href="challenge.html">Reto</a>
-						<ul>
-							<li><a href="#viewer">Visualizador</a></li>
-							<li><a href="#blockly">Editor</a></li>
-						</ul>
-					</li>
-					<li><a href="#controls">Ejemplos</a>
-						<ul>
-							<li><a href="">Ejemplos</a></li>
-						</ul>
-					</li>
-					<li><a href="#">Lenguaje</a>
-						<ul>
-							<li><a href="#">Lenguaje</a></li>
-						</ul>
-					</li>
-					<li><a href="#">Instrucciones</a>
-						<ul>
-							<li><a href="#">Instrucciones</a></li>
-						</ul>
-					</li>
-					<li><a href="">Nosotros</a></li>
-				</ul>
+                <ul id="tiny">
+                    <li>
+                        <a href="index.html">Inicio</a>
+                    </li>
+                    <li class="active">
+                        <a href="challenge.html">Reto</a>
+                    </li>
+                    <li>
+                        <a href="examples.html">Ejemplos</a>
+                    </li>
+                    <li>
+                        <a href="language.html">Lenguaje</a>
+                    </li>
+                    <li>
+                        <a href="instructions.html">Instrucciones</a>
+                    </li>
+                    <li>
+                        <a href="aboutus.html">Nosotros</a>
+                    </li>
+                </ul>
 			</div>
 		</div>
 		<div class="clear"></div>
@@ -113,6 +104,7 @@
 				<canvas id="scratch" width="400" height="400"></canvas>
 				<canvas id="display" width="400" height="400"></canvas>
 			</div>
+			<br />
 			<div id="controls">
 				<div class="control">
 					<a id="runButton" href="" class="button blue" >Ejecutar</a>
@@ -173,91 +165,11 @@
 	</ul>
 	<!-- End Intro -->
 	
-	<!-- Begin Page-navi -->
-	<div id="navigation">
-	  <div class="nav-previous">
-	  	<a href="#" ><span class="meta-nav-prev">&larr; Inicio</span></a>
-	  	</div>
-	  <!-- 
-			<div class="nav-next"><a href="#" ><span class="meta-nav-next">Newer posts &rarr;</span></a></div>
-			 --> 
-	</div>
-	<!-- End Page-navi --> 
 </div>
 <!-- End Wrapper -->
 
 <!-- Begin Footer -->
-<div class="footer-wrapper">
-<div id="footer" class="four">
-		<div id="first" class="widget-area">
-			<div class="widget widget_search">
-				<h3 class="widget-title">Search</h3>
-				<form class="searchform" method="get" action="#">
-					<input type="text" name="s" value="type and hit enter" onFocus="this.value=''" onBlur="this.value='type and hit enter'"/>
-				</form>
-			</div>
-			<div class="widget widget_archive">
-				<h3 class="widget-title">Archives</h3>
-				<ul>
-					<li><a href="#">September 2012</a> (6)</li>
-					<li><a href="#">August 2012</a> (2)</li>
-					<li><a href="#">July 2012</a> (2)</li>
-					<li><a href="#">June 2012</a> (4)</li>
-					<li><a href="#">May 2012</a> (3)</li>
-					<li><a href="#">January 2012</a> (1)</li>
-				</ul>
-			</div>	
-		</div><!-- #first .widget-area -->
-	
-		<div id="second" class="widget-area">
-			<div id="twitter-2" class="widget widget_twitter">
-					<h3 class="widget-title">Twitter</h3>
-					
-					<div id="twitter-wrapper">
-						<div id="twitter"></div>
-						<span class="username"><a href="http://twitter.com/elemisdesign">→ Follow @elemisdesign</a></span>
-					</div>
-			</div>
-		</div><!-- #second .widget-area -->
-	
-		<div id="third" class="widget-area">
-		<div id="example-widget-3" class="widget example">
-			<h3 class="widget-title">Popular Posts</h3>
-			<ul class="post-list">
-			  	<li> 
-			  		<div class="frame">
-			  			<a href="#"><img src="images/art/s1.jpg" /></a>
-			  		</div>
-					<div class="meta">
-					    <h6><a href="#">Charming Winter</a></h6>
-					    <em>28th Sep 2012</em>
-				    </div>
-				</li>
-				<li> 
-			  		<div class="frame">
-			  			<a href="#"><img src="images/art/s2.jpg" /></a>
-			  		</div>
-					<div class="meta">
-					    <h6><a href="#">Trickling Stream</a></h6>
-					    <em>5th Sep 2012</em>
-				    </div>
-				</li>
-				<li> 
-			  		<div class="frame">
-			  			<a href="#"><img src="images/art/s3.jpg" /></a>
-			  		</div>
-					<div class="meta">
-					    <h6><a href="#">Morning Glory</a></h6>
-					    <em>26th Sep 2012</em>
-				    </div>
-				</li>
-			</ul>
-			
-		</div>
-		</div><!-- #third .widget-area -->
-		
-	</div>
-</div>
+
 <div class="site-generator-wrapper">
 	<div class="site-generator">
 		<p><a href="http://www.uis.edu.co/webUIS/es/investigacionExtension/programasApoyo/documentos/2012/estudiantes/UIS%20Ingenium.pdf" target="_blank">UIS Ingenium 2013 </a></p>

@@ -38,22 +38,22 @@
 		<div id="menu-wrapper">
 			<div id="menu" class="menu">
 				<ul id="tiny">
-					<li class="active">
+					<li {% if page.title ==  "Inicio" %} class="active"  {% endif %}>
 					    <a href="index.html">Inicio</a>
 					</li>
-					<li>
+					<li >
 					    <a href="challenge.html">Reto</a>
 					</li>
-					<li>
+					<li {% if page.title ==  "Ejemplos" %} class="active"  {% endif %}>
 					    <a href="examples.html">Ejemplos</a>
 					</li>
-					<li>
+					<li {% if page.title ==  "Lenguaje" %} class="active"  {% endif %}>
 					    <a href="language.html">Lenguaje</a>
 					</li>
-					<li>
+					<li {% if page.title ==  "Instrucciones" %} class="active"  {% endif %}>
 					    <a href="instructions.html">Instrucciones</a>
 					</li>
-					<li>
+					<li {% if page.title ==  "Acerca de Nosotros" %} class="active"  {% endif %}>
 					    <a href="aboutus.html">Nosotros</a>
 					</li>
 				</ul>
@@ -71,7 +71,7 @@
 	<div class="box">
 		<div id="home">
 	
-			  <!--<h1 class="title">{{ page.title }}</h1>-->
+			  <h2>{{ page.title }}</h2>
 			 {{ content }}
  		</div>
 	</div>	
@@ -84,7 +84,7 @@
 <div class="site-generator-wrapper">
 	<div class="site-generator">
 		<p><a href="">UIS Ingenium 2013 </a></p>
-		<p>Based on <a href="http://blockly-demo.appspot.com/static/apps/turtle/index.html">Blockly Turtle</a>. </p>
+		<p>Basado en <a href="http://blockly-demo.appspot.com/static/apps/turtle/index.html">Blockly Turtle</a>. </p>
 	</div>
 </div>
 <!-- End Footer -->
