@@ -1,6 +1,7 @@
 ---
-layout: default
+layout: page
 title: Lenguaje
+image: images/lenguaje.png
 ---
 **En construcción**
 

@@ -1,6 +1,7 @@
 ---
-layout: default
+layout: page
 title: Instrucciones
+image: images/uis_logo.png
 ---
 **en construcción**
 

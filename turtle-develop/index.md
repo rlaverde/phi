@@ -1,6 +1,7 @@
 ---
-layout: default
+layout: page
 title: Plataforma de generación de formas geométricas.
+image: images/artematico_arbol.png
 ---
 
 Con la finalidad de promover el pensamiento lógico y las habilidades artísticas
