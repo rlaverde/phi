@@ -26,28 +26,22 @@ Avanzar, retroceder y hacer girar la tortuga, indicar si realiza trazo o no y pe
 
 Estructuras de programación para toma de decisiones, y repetición de fragmentos de código
 
-* Si (if)
-  Realiza las instrucciones *SI* la condición se cumple
-  * o si (else if)
-    Si las condiciones anteriores no se cumplieron comprueba si la condición se cumple y ejecuta el bloque
-  * sino (else)
-    Si ninguna de las condiciones anteriores se cumplió realiza el bloque
++	**Si (if)**
+	Realiza las instrucciones *SI* la condición se cumple
+	* o si (else if) Si las condiciones anteriores no se cumplieron comprueba si la condición se cumple y ejecuta el bloque
+	* sino (else) Si ninguna de las condiciones anteriores se cumplió realiza el bloque
 
-    
-* Repetir n veces
++	**Repetir n veces**
 
-* Repetir mientras, hasta (while)
++ 	**Repetir mientras, hasta (while)**
 
-* Contar de n hasta m (for i in range(n, m))
++ 	**Contar de n hasta m (for i in range(n, m))**
 
-* Para cada elemento de la lista
-  Recorre los elementos de una lista
++	**###Para cada elemento de la lista:** recorre los elementos de una lista
 
-* Instrucciones especiales
-  * Romper
-    Termina la ejecución de un bloque
-  * Continuar
-    Termina la ejecución actual y continua con la siguiente iteración
++	**Instrucciones especiales**
+	+**Romper:** Termina la ejecución de un bloque
+	+ **Continuar** Termina la ejecución actual y continua con la siguiente iteración
     
 ## Logica
 

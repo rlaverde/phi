@@ -1522,3 +1522,7 @@ li.post.pingback p {
 xml{
 	display: none;
 }
+
+li p {
+  display: inline-block;
+}
