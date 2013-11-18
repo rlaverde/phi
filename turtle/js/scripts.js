@@ -13,34 +13,23 @@ jQuery(document).ready(function($)  {
 	});
 	
 	$('#runButton').click(function(){
-		console.log('Init count');
-		window['time'] = new Date().getTime();
-		window['copytime'] = 0;
 		Turtle.runButtonClick();
 		return false;
 	});
 	$('#runStepButton').click(function(){
-		console.log('Init count');
-		window['time'] = new Date().getTime();
-		window['copytime'] = 0;
 		Turtle.runStepButtonClick();
 		return false;
 	});
-	
-	$('#resetButton').click(function(){
-		Turtle.resetButtonClick();
+	$('#linkButton').click(function(){
+		
 		return false;
 	});
 	$('#viewCode').click(function(){
-		BlocklyApps.showCode();
+		
 		return false;
 	});
-	$('#linkButton').click(function(){
-		BlocklyStorage.link();
-		return false;
-	});
-	$('#captureButton').click(function(){
-		Turtle.createImageLink();
+	$('#resetButton').click(function(){
+		Turtle.resetButtonClick();
 		return false;
 	});
 	

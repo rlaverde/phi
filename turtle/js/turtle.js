@@ -224,18 +224,10 @@ Turtle.reset = function() {
  * Copy the scratch canvas to the display canvas. Add a turtle marker.
  */
 Turtle.display = function() {
-  		var start = new Date().getTime();
-  		
 
- 
   Turtle.ctxDisplay.globalCompositeOperation = 'copy';
   Turtle.ctxDisplay.drawImage(Turtle.ctxScratch.canvas, 0, 0);
   Turtle.ctxDisplay.globalCompositeOperation = 'source-over';
-  		
-  		var end = new Date().getTime();
-		var time = end - start;
-		console.log('Copy time: ' + time);
-		window.copytime += time; 
 	
   // Draw the turtle.
   if (Turtle.visible) {
@@ -370,13 +362,7 @@ Turtle.animate = function() {
   if (!tuple) {
     document.getElementById('spinner').style.display = 'none';
     Blockly.mainWorkspace.highlightBlock(null);
-    
-    window.time = new Date().getTime() - window.time;
-	console.log('Total copytime: ' + window.copytime)
-	console.log('Execution time: ' + window.time);
-    console.log('Percent Copy: '+(window.copytime/window.time));
-    window.time = 0;
-    
+        
     return;
   }
   var command = tuple.shift();
