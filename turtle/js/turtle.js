@@ -143,7 +143,7 @@ Turtle.init = function() {
 	    }
 	    
 	    blocklyEl.style.width = controlRight.offsetWidth + 'px';
-	    blocklyEl.style.height = (controlLeft.offsetHeight - 20) + 'px';
+	    blocklyEl.style.height = ((controlLeft.offsetHeight > window.innerHeight) ? controlLeft.offsetHeight : (window.innerHeight - 50)) + 'px';
 	    
 	    window.width_old = window.innerWidth;
   		window.height_old = window.innerHeight;
@@ -275,6 +275,7 @@ Turtle.display = function() {
 /**
  * Click the run button.  Start the program.
  */
+
 Turtle.runButtonClick = function() {
   	var runButton = document.getElementById('runButton');
   	var runStepButton = document.getElementById('runStepButton');
@@ -324,6 +325,7 @@ Turtle.resetButtonClick = function() {
   document.getElementById('resetButton').style.display = 'none';
   document.getElementById('spinner').style.display = 'none';
   Blockly.mainWorkspace.traceOn(false);
+  document.getElementById('counter').innerHTML='0 pasos';
   Turtle.reset();
 };
 
@@ -333,6 +335,7 @@ Turtle.resetButtonClick = function() {
 Turtle.execute = function() {
   BlocklyApps.log = [];
   BlocklyApps.ticks = 1000000;
+  Turtle.count = 0;
 
   var code = Blockly.JavaScript.workspaceToCode();
   try {
@@ -348,7 +351,7 @@ Turtle.execute = function() {
   // BlocklyApps.log now contains a transcript of all the user's actions.
   // Reset the graphic and animate the transcript.
  Turtle.reset();
-  Turtle.pid = window.setTimeout(Turtle.animate, 100);
+ Turtle.pid = window.setTimeout(Turtle.animate, 100);
 };
 
 /**
@@ -362,7 +365,9 @@ Turtle.animate = function() {
   if (!tuple) {
     document.getElementById('spinner').style.display = 'none';
     Blockly.mainWorkspace.highlightBlock(null);
-        
+    var stepText=(Turtle.count == 1)? 'paso': 'pasos';	
+    document.getElementById('counter').innerHTML=Turtle.count+' '+stepText;
+    
     return;
   }
   var command = tuple.shift();
@@ -383,63 +388,68 @@ Turtle.animate = function() {
  * @param {!Array} values List of arguments for the command.
  */
 Turtle.step = function(command, values) {
-  switch (command) {
-    case 'FD':  // Forward
-      if (Turtle.penDownValue) {
-        Turtle.ctxScratch.beginPath();
-        Turtle.ctxScratch.moveTo(Turtle.x, Turtle.y);
-      }
-      var distance = values[0];
-      if (distance) {
-        Turtle.x += distance * Math.sin(2 * Math.PI * Turtle.heading / 360);
-        Turtle.y -= distance * Math.cos(2 * Math.PI * Turtle.heading / 360);
-        var bump = 0;
-      } else {
-        // WebKit (unlike Gecko) draws nothing for a zero-length line.
-        var bump = 0.1;
-      }
-      if (Turtle.penDownValue) {
-        Turtle.ctxScratch.lineTo(Turtle.x, Turtle.y + bump);
-        Turtle.ctxScratch.stroke();
-      }
-      break;
-    case 'RT':  // Right Turn
-      Turtle.heading += values[0];
-      Turtle.heading %= 360;
-      if (Turtle.heading < 0) {
-        Turtle.heading += 360;
-      }
-      break;
-    case 'DP':  // Draw Print
-      Turtle.ctxScratch.save();
-      Turtle.ctxScratch.translate(Turtle.x, Turtle.y);
-      Turtle.ctxScratch.rotate(2 * Math.PI * (Turtle.heading - 90) / 360);
-      Turtle.ctxScratch.fillText(values[0], 0, 0);
-      Turtle.ctxScratch.restore();
-      break;
-    case 'DF':  // Draw Font
-      Turtle.ctxScratch.font = values[2] + ' ' + values[1] + 'pt ' + values[0];
-      break;
-    case 'PU':  // Pen Up
-      Turtle.penDownValue = false;
-      break;
-    case 'PD':  // Pen Down
-      Turtle.penDownValue = true;
-      break;
-    case 'PW':  // Pen Width
-      Turtle.ctxScratch.lineWidth = values[0];
-      break;
-    case 'PC':  // Pen Colour
-      Turtle.ctxScratch.strokeStyle = values[0];
-      Turtle.ctxScratch.fillStyle = values[0];
-      break;
-    case 'HT':  // Hide Turtle
-      Turtle.visible = false;
-      break;
-    case 'ST':  // Show Turtle
-      Turtle.visible = true;
-      break;
-  }
+	if(command){
+		Turtle.count++;
+		switch (command) {
+			case 'FD':  // Forward
+			  if (Turtle.penDownValue) {
+			    Turtle.ctxScratch.beginPath();
+			    Turtle.ctxScratch.moveTo(Turtle.x, Turtle.y);
+			  }
+			  var distance = values[0];
+			  if (distance) {
+			    Turtle.x += distance * Math.sin(2 * Math.PI * Turtle.heading / 360);
+			    Turtle.y -= distance * Math.cos(2 * Math.PI * Turtle.heading / 360);
+			    var bump = 0;
+			  } else {
+			    // WebKit (unlike Gecko) draws nothing for a zero-length line.
+			    var bump = 0.1;
+			  }
+			  if (Turtle.penDownValue) {
+			    Turtle.ctxScratch.lineTo(Turtle.x, Turtle.y + bump);
+			    Turtle.ctxScratch.stroke();
+			  }
+			  
+			  break;
+			case 'RT':  // Right Turn
+			  Turtle.heading += values[0];
+			  Turtle.heading %= 360;
+			  if (Turtle.heading < 0) {
+			    Turtle.heading += 360;
+			  }
+			  
+			  break;
+			case 'DP':  // Draw Print
+			  Turtle.ctxScratch.save();
+			  Turtle.ctxScratch.translate(Turtle.x, Turtle.y);
+			  Turtle.ctxScratch.rotate(2 * Math.PI * (Turtle.heading - 90) / 360);
+			  Turtle.ctxScratch.fillText(values[0], 0, 0);
+			  Turtle.ctxScratch.restore();
+			  break;
+			case 'DF':  // Draw Font
+			  Turtle.ctxScratch.font = values[2] + ' ' + values[1] + 'pt ' + values[0];
+			  break;
+			case 'PU':  // Pen Up
+			  Turtle.penDownValue = false;
+			  break;
+			case 'PD':  // Pen Down
+			  Turtle.penDownValue = true;
+			  break;
+			case 'PW':  // Pen Width
+			  Turtle.ctxScratch.lineWidth = values[0];
+			  break;
+			case 'PC':  // Pen Colour
+			  Turtle.ctxScratch.strokeStyle = values[0];
+			  Turtle.ctxScratch.fillStyle = values[0];
+			  break;
+			case 'HT':  // Hide Turtle
+			  Turtle.visible = false;
+			  break;
+			case 'ST':  // Show Turtle
+			      Turtle.visible = true;
+			      break;
+		}
+	}
 };
 
 /**

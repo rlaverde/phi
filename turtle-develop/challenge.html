@@ -86,7 +86,7 @@
 <!-- Begin Wrapper -->
 <div class="full-wrapper"><!-- Begin Intro -->
 	
-	<div class="box">
+	<div id="turtle" class="box">
 		<div class="one-half">
 			<h3 class="title">Visualizador y editor</h3>
 		</div>
@@ -115,7 +115,7 @@
 				</div>
 				<div>
 					<div class="control">
-						<a id="viewCode" href="" class="button blue" title="Ver el código JavaScript generado.">
+						<a id="codeButton" href="" class="button blue" title="Ver el código JavaScript generado.">
 							<img src='js/media/1x1.gif' class="code">
 						</a>
 					</div>
@@ -130,6 +130,9 @@
 						</a>
 					</div>
 					<div class="control">
+						<a id="counter" href="#" class="button blue">0 pasos</a>
+					</div>
+					<div class="control">
 						<svg id="slider" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="150" height="50">
 							<!-- Slow icon. -->
 							<clipPath id="slowClipPath">
@@ -140,9 +143,9 @@
 								<rect width=26 height=16 x=120 y=10 />
 							</clipPath>
 							<image xlink:href="images/icons.png" height=42 width=106 x=120 y=-11 clip-path="url(#fastClipPath)" />
-						</svg>	
+						</svg>
 					</div>
-				</div>
+				</div>				
 			</div>
 		</div>
 		<div id="control-right" class="two-third last">
@@ -199,7 +202,7 @@
 	<span id="catVariables">Variables</span>
 	<span id="catProcedures">Procedimientos</span>
 	<span id="httpRequestError">Hubo un problema con la petición.</span>
-	<span id="linkAlert">Comparte tus bloques con esta conexión:</span>
+	<span id="linkAlert">Comparte tus bloques con esta conexión:\n\n%1</span>
 	<span id="hashError">«%1» no corresponde con ningún programa guardado.</span>
 	<span id="xmlError">No se pudo cargar el archivo guardado.  ¿Quizá fue creado con otra versión de Blockly?</span>
 	<span id="listVariable">lista</span>

@@ -456,6 +456,8 @@ hr {
     border: 1px solid #e7e88c;
     color: #47451b;
 }
+
+
 /*-----------------------------------------------------------------------------------*/
 /*	COLUMNS
 /*-----------------------------------------------------------------------------------*/
@@ -1442,9 +1444,8 @@ li.post.pingback p {
 }
 
 #controls .control{
-	display: inline;
-	height: 50px;
-	
+	display: inline-block;
+	margin: 0 0 20px 0;
 }
 
 #blockly {
