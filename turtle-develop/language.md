@@ -3,17 +3,23 @@ layout: page
 title: Lenguaje
 image: images/lenguaje.png
 ---
-**En construcción**
 
+**Blocky** es un editor visual de programación basado en la web, que hace uso de diversas
+tecnologias, en especial "Drag and drop" que permite arrastrar y soltar bloques de instrucciones, 
+con los que se construyen aplicaciones, en este caso aplicaciones para generar graficos.
 
-**Blocky** es un editor gráfico de programación basado en la web, los usuarios 
-pueden arrastrar los bloques para construir una aplicación
-
-Blocky soporta las siguientes estructuras de programación:
+Blocky soporta las siguientes instrucciones de programación:
 
 ## Tortuga - Movimiento y acciones generales
 
-Avanzar, retroceder y hacer girar la tortuga, indicar si realiza trazo o no y permite escribir texto
+**Avanzar/Retroceder**: avanza o retrocede la tortuga una distancia determinada por su parametro, sin alterar el agulo actual.
+
+**Girar tortuga**: permite cambiar el angulo de dirección de la tortuga, el cual hace uso de un sistema sexagesimal, también tiene un estado que determina el sentido del giro.
+
+**Establecer el ancho**: permite cambiar el ancho del rastro de la tortuga, el cual es determinado por un parametro numerico.
+
+**Levantar el boligrafo**: permite levantar/bajar el boligrafo que dibuja el rastro de la tortuga
+****: indicar si realiza trazo o no y permite escribir texto
 
 ## Color
 

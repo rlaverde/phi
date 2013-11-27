@@ -12,6 +12,9 @@ handlers:
   static_files: storage.js
   upload: storage\.js
 
+- url: /backup
+  script: backup.py
+
 # Report service.
 - url: /report
   script: report.py
