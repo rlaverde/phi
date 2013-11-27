@@ -34,7 +34,7 @@ print "entity_set = []"
 
 def make_backup():
   
-  print "#"+Xml.all(keys_only=True).count()
+  print "#"+str(Xml.all(keys_only=True).count())
   
   xml_all = Xml.all(keys_only=True)
   xml_all = xml_all.run()
