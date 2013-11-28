@@ -8,8 +8,9 @@ data= {
     }
 
 current_time = time.strftime("%d-%m %I:%M")
-f = open(current_time, "w")
+f = open("/root/backups/{}".format(current_time), "w")
 f.write(requests.post(url, data=data).text)
+f.close
 
 
 
