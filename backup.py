@@ -1,6 +1,5 @@
 import cgi
 from google.appengine.ext import db
-from xml.sax.saxutils import escape, unescape
 
 class Xml(db.Model):
   xml_hash = db.IntegerProperty()
@@ -10,33 +9,20 @@ entity_kind = "Xml"
 
 forms = cgi.FieldStorage()
 
-html_escape_table = {
-    '"': "&quot;",
-    "'": "&apos;"
-}
-html_unescape_table = {v:k for k, v in html_escape_table.items()}
-
-def html_escape(text):
-    return escape(text, html_escape_table)
-
-def html_unescape(text):
-    return unescape(text, html_unescape_table)
-
 print "Content-Type: text/plain\n"
 
+print "#Records: "+str(Xml.all(keys_only=True).count())
+print ""
 print "from google.appengine.ext import db"
-
+print ""
 print "class Xml(db.Model):"
 print "  xml_hash = db.IntegerProperty()"
 print "  xml_content = db.TextProperty()"
-print "\n"
+print ""
 print "entity_set = []"
 
 def make_backup():
-  
-  print "#"+str(Xml.all(keys_only=True).count())
-  print '\n'
-  
+    
   xml_all = Xml.all(keys_only=True)
   xml_all = xml_all.run()
   
