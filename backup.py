@@ -5,10 +5,6 @@ class Xml(db.Model):
   xml_hash = db.IntegerProperty()
   xml_content = db.TextProperty()
 
-entity_kind = "Xml"
-
-forms = cgi.FieldStorage()
-
 print "Content-Type: text/plain\n"
 
 print "#Records: "+str(Xml.all(keys_only=True).count())
@@ -20,14 +16,16 @@ print "  xml_hash = db.IntegerProperty()"
 print "  xml_content = db.TextProperty()"
 print ""
 print "entity_set = []"
+print ""
+
+forms = cgi.FieldStorage()
 
 def make_backup():
     
   xml_all = Xml.all(keys_only=True)
   xml_all = xml_all.run()
   
-  id = forms["make_backup"].value
-  
+  # id = forms["make_backup"].value
   
   for entity_key in xml_all:
     key_provided = entity_key.name()
@@ -39,7 +37,6 @@ def make_backup():
       xml_hash    = result.xml_hash
       
       print "temp = {}"
-      print "temp['entity_kind'] = '"+entity_kind+"'"
       print "temp['entity_key'] ='"+entity_key.__str__()+"'"
       print "temp['xml_key'] ='"+key_provided+"'"
       print "temp['xml_hash'] ="+str(xml_hash)
