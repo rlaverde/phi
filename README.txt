@@ -1,34 +1,36 @@
+This project can be deployed using google app engine
 
-  Running an App Engine server
+phy/
+├── app.yaml
+├── backup/
+│   └── automatization_backup.py
+├── backup.py
+├── closure-library-read-only/
+├── _config.yml
+├── favicon.ico
+├── index_redirect.py
+├── index.yaml
+├── README.txt
+├── report.py
+├── storage.js
+├── storage.py
+├── turtle/
+│   └── Generated files using jekyll
+└── turtle-develop/
+    ├── contest/
+    ├── css/
+    ├── Pruebas/
+    ├── images/
+    ├── _layouts/
+    ├── _posts/
+    ├── js/
+    ├── index.md
+    ├── instructions.md
+    ├── language.md
+    ├── _index.html
+    ├── index_turtle.html
+    ├── examples.html
+    ├── aboutus.html
+    └── challenge.html
 
-This directory contains the files needed to setup the optional Blockly server.
-Although Blockly itself is 100% client-side, the server enables cloud storage
-and sharing.  Store your programs in Datastore and get a unique URL that allows
-you to load the program on any computer.
-
-To run your own App Engine instance you'll need to create this directory
-structure:
-
-blockly/
- |- app.yaml
- |- index.yaml
- |- index_redirect.py
- |- README.txt
- |- storage.js
- |- storage.py
- |- closure-library-read-only/
- `- static/
-     |- apps/
-     |- core/
-     |- demos/
-     |- generators/
-     |- language/
-     |- media/
-     |- tests/
-     `- blockly_compressed.js
-
-Instructions for fetching Closure may be found here:
-  http://code.google.com/p/blockly/wiki/Closure
-
-Finally, upload this directory structure to your App Engine account,
-wait a minute, then go to http://YOURNAME.appspot.com/
+acknowledgments: This project is based in blocky: https://code.google.com/p/blockly/
