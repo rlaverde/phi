@@ -1,4 +1,11 @@
-This project can be deployed using google app engine
+========================
+phi - Graphical programming editor
+========================
+
+This project was created for a contest at the Industrial University of Santander UIS;
+It's goal was to mix mathematics and art, creating digital images produced by Algorithm
+
+It can be deployed using google app engine, 
 
 phy/
 ├── app.yaml
